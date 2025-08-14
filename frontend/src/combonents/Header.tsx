@@ -12,8 +12,9 @@ function Header() {
       </div>
 
       <div className={styles.links}>
+        <NavLink to="/" >Home</NavLink>
+        <NavLink to="/questions">Questionare</NavLink>
         <NavLink to="/about">About</NavLink>
-        <NavLink to="/signin">Sign In</NavLink>
       </div>
     </nav>
   );

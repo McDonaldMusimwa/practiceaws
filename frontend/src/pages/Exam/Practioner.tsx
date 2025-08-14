@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Exam.module.css"
 import HomeStart from "../../combonents/HomeStart";
-import Home from "../Home";
+import Home from "../Questionare";
 function Practitioner() {
 
     const [start, setStart] = useState(false)

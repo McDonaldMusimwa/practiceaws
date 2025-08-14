@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import SolutionsArchitect from './pages/Exam/SolutionsArchitect.tsx';
 import Practitioner from './pages/Exam/Practioner.tsx';
-import About from './pages/About.tsx';
+import About from './pages/Home.tsx';
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from './combonents/Header.tsx';
 import Footer from './combonents/Footer.tsx';
@@ -15,11 +15,11 @@ createRoot(document.getElementById('root')!).render(
   <Header />
     <Routes>
 
-      <Route index path='/' element={<App />} />
+      <Route  path='/questions' element={<App />} />
       <Route path='saa03' element={<SolutionsArchitect />} /> 
       <Route path='practioner' element={<Practitioner />} /> 
       <Route path='aipractioner' element={<AiPractitioner />} />
-      <Route path='about' element={<About />} />
+      <Route index path='/' element={<About />} />
 
     </Routes>
     <Footer />

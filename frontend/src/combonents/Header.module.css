@@ -42,10 +42,15 @@
 }
 
 .links a {
-  color: #0070f3;
+  color: #111111;
   text-decoration: none;
+  margin-right: 1rem;
+  padding: .5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .links a:hover {
-  text-decoration: underline;
+  background-color: #c8f3a6;
+  color:#dd6b20;
 }

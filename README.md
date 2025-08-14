@@ -1,4 +1,4 @@
-/*************  ✨ Windsurf Command ⭐  *************/
+/*************  ✨ Practice Solution ⭐  *************/
 # AWS Practice Questions Web App
 
 This project is a serverless web application designed to help users prepare for AWS certification exams. It features a frontend built with React and a backend powered by Node.js.

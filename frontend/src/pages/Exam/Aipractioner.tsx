@@ -1,5 +1,5 @@
 import HomeStart from '../../combonents/HomeStart';
-import Home from '../Home';
+import Home from '../Questionare';
 import styles from "./Exam.module.css"
 import { useState } from 'react';
 function Aipractioner() {
