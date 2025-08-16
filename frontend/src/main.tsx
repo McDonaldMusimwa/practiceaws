@@ -15,10 +15,10 @@ createRoot(document.getElementById('root')!).render(
   <Header />
     <Routes>
 
-      <Route  path='/questions' element={<App />} />
-      <Route path='saa03' element={<SolutionsArchitect />} /> 
-      <Route path='practioner' element={<Practitioner />} /> 
-      <Route path='aipractioner' element={<AiPractitioner />} />
+      <Route  path='/Questionares' element={<App />} />
+      <Route path='SAA-C03' element={<SolutionsArchitect />} /> 
+      <Route path='CP-C03' element={<Practitioner />} /> 
+      <Route path='AIP' element={<AiPractitioner />} />
       <Route index path='/' element={<About />} />
 
     </Routes>

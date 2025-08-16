@@ -1,8 +1,13 @@
-import QuestionComponent from "../combonents/Question";
-import { useState } from "react";
+  import QuestionComponent from "../combonents/Question";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
-function Home(){
-  const [data,setData] = useState(null);
+import getQuestions from "../utils/http";
+
+function Home() {
+  const [data, setData] = useState<any>([]);
+    const location = useLocation();
+    let pathname = (location.pathname.replace(/\//g,""))
+  /*
 const saaQuestions = [
   {
     question: "A company has developed public APIs hosted in Amazon EC2 instances behind an Elastic Load Balancer. The APIs will be used by clients from on-premises networks that require whitelisting IP addresses. What should the Solutions Architect do to meet this requirement?",
@@ -258,63 +263,64 @@ const aiPractitionerQuestions = [
     explantion:
       "Amazon Personalize enables developers to create individualized recommendations for customers, similar to what is used by Amazon.com. It allows you to deliver personalized product, content, or marketing suggestions by training models on your user interaction data.",
   },
-];
-
-  async function fetchQuestion(){
+];*/
+  const fetchQuestions = async () => {
     try {
-      const response = await fetch('https://4uma4ssz71.execute-api.us-east-1.amazonaws.com/first?examcode=SAA-C03&querytype=get&section_module=1');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      const res = await getQuestions(pathname,"2");
+
+      if (res) {
+        setData(res);
+      } else {
+        console.error("Failed to fetch questions");
       }
-      const data = await response.json();
-      if (!data) {
-        throw new Error('No data returned');
-      }
-      // Process the data as needed
-     setData(data);
     } catch (error) {
-      console.error('Error fetching question:', error);
+      console.error("Error fetching questions:", error);
     }
   }
-  // Call the function
-  fetchQuestion()
-  const navigation = useLocation();
+  console.log(data)
 
-  const [tracker,setTracker]= useState(0)
- 
-  const navigateHandler={
-    nextQuestion:()=>{
-      if(tracker < data.length-1){
-        setTracker((prev)=>{
-          return prev+1
-        })
-      }
+
+
+  const [tracker, setTracker] = useState(0)
+
+  const navigateHandler = {
+
+    nextQuestion: () => {
+      /*
+   if(tracker < data.length-1){
+     setTracker((prev)=>{
+       return prev+1
+     })
+   }   */
     },
-    saveAnswer:()=>{
+    saveAnswer: () => {
 
     }
   }
 
-
-  let Questions;
-  if(navigation.pathname === '/saa03'){
-    Questions=saaQuestions
-  }
-  else if(navigation.pathname === '/practioner'){
-    Questions=cloudPractitionerQuestions
-  }else{
-    Questions=aiPractitionerQuestions
-  }
+  /*
+    let Questions;
+    if(navigation.pathname === '/saa03'){
+      Questions=saaQuestions
+    }
+    else if(navigation.pathname === '/practioner'){
+      Questions=cloudPractitionerQuestions
+    }else{
+      Questions=aiPractitionerQuestions
+    }*/
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
   return (<>
-      {Questions.map((question,i)=>{
-        if(i===tracker){
-          return <QuestionComponent question={question} navigateHandler={navigateHandler} questionnumber={tracker} key={tracker}/>
-        }
-        else{
-          return null
-        }
-      })}
+    {data.map((question: any, i: any) => {
+      if (i === tracker) {
+        return <QuestionComponent question={question} navigateHandler={navigateHandler} questionnumber={tracker} key={tracker} />
+      }
+      else {
+        return null
+      }
+    })}
 
-      </>)
+  </>)
 }
-export default Home ;
+export default Home;

@@ -10,6 +10,7 @@
     position: fixed;
     background-color: white;
     z-index: 1;
+    margin: 0 auto;
 }
 .logocontainer{
     display: flex;
@@ -53,4 +54,42 @@
 .links a:hover {
   background-color: #c8f3a6;
   color:#dd6b20;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* stack vertically */
+    height: auto; /* let content define height */
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .logocontainer {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .logocontainer img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .links {
+    flex-direction: row; /* stack links */
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .links a {
+    margin-right: 0; /* remove right margin */
+    width: 100%; /* make links take full width */
+    text-align: center;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
 }
