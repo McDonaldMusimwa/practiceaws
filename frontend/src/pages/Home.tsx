@@ -16,7 +16,7 @@ export default function About() {
           <div className={styles.heroContent}>
 
             <p>
-              Welcome to <strong>CloudPrep</strong>, a free platform built to help learners prepare for AWS certification exams. Whether you're just starting or brushing up for your next badge, we provide curated questions, clear explanations, and community support—all without breaking the bank.
+              Welcome to <strong className='stroke-text'>Practice Solution</strong>, a free platform built to help learners prepare for AWS certification exams. Whether you're just starting or brushing up for your next badge, we provide curated questions, clear explanations, and community support—all without breaking the bank.
             </p>
             <button className={styles.ctaButton} onClick={navigateToQuestion}>
               🚀 Start the Questionnaire

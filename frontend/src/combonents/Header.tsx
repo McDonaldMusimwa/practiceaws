@@ -1,4 +1,4 @@
-import logo from "../../public/P.png";
+import logo from "../../public/logo3.png";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router";
 function Header() {

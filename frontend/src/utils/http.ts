@@ -1,6 +1,6 @@
-import axios from "axios"
-let baseUrl = "https://4uma4ssz71.execute-api.us-east-1.amazonaws.com/dev/questions?"
-let url = "https://4uma4ssz71.execute-api.us-east-1.amazonaws.com/dev/questions?querytype=get&examcode=SAA-C03&section_module=2"
+import axios from "axios";
+const baseUrl = "https://4uma4ssz71.execute-api.us-east-1.amazonaws.com/dev/questions?"
+const url = "https://4uma4ssz71.execute-api.us-east-1.amazonaws.com/dev/questions?querytype=get&examcode=SAA-C03&section_module=2"
 async function getQuestions(examCode:string, section_module:string){
   try {
     // Add the missing querytype=get parameter to the URL

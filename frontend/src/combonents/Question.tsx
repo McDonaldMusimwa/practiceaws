@@ -1,7 +1,32 @@
-import { useState } from "react";
+import { useState} from "react";
 import styles from "./Question.module.css";
-import Card from "./UI/Card";
-import type{ NavigateHandlerType, QuestionType } from "../const/types";
+import { useAnsweredQuestions } from "../store/QuestionStore";
+import type { AnsweredQuestionType } from "../types/QuestionType";
+//import Card from "./UI/Card";
+
+interface Choice {
+  selection: string;
+  answer: string;
+}
+
+interface QuestionType {
+  questionText: string;
+  correctAnswer: string;
+  questionid: string;
+  examcode: string;
+  difficulty: string;
+  section_module: string;
+  isFree: boolean;
+  isGeneral: boolean;
+  choices: Choice[];
+  domain: string;
+  explanation: string;
+}
+
+type NavigateHandlerType = {
+  nextQuestion: () => void;
+  saveAnswer: () => void;
+};
 
 type Props = {
   question: QuestionType;
@@ -9,32 +34,61 @@ type Props = {
   questionnumber: number;
 };
 
-function QuestionComponent({ question, navigateHandler, questionnumber }: Props) {
-  const [answer, setAnswer] = useState<string>("");
+function QuestionComponent({
+  question,
+  navigateHandler,
+  questionnumber,
+}: Props) {
+  const saveAnswerToGlobalState = useAnsweredQuestions(
+    (state) => state.saveAnsweredQuestions
+  );
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [result, setResult] = useState<string>("");
+  const [active, setActive] = useState(true);
+
 
   if (!question) {
     throw new Error("Question cannot be null or undefined");
   }
 
-  function saveAnswerCompare() {
-    const correctAnswer = question.correctAnswer;
-    setAnswer(correctAnswer);
+  function saveAnswer() {
+    console.log(userAnswer);
 
     if (!userAnswer) {
       setResult("⚠️ Please select an answer before saving");
       return;
     }
+    setActive(false);
 
+    try {
+      const answeredQuestion: AnsweredQuestionType = {
+        ...question,
+        userAnswer: userAnswer,
+      };
+   
+
+      saveAnswerToGlobalState(answeredQuestion);
+      navigateHandler.nextQuestion();
+    } catch (error) {
+      console.error("Error setting questionAnswered", error);
+    }
+
+    /*
     if (correctAnswer === userAnswer) {
       setResult("✅ Correct");
     } else {
       setResult("❌ Incorrect answer");
     }
 
-    navigateHandler.saveAnswer();
+    try {
+      navigateHandler.saveAnswer();
+    } catch (error) {
+      console.error("Error calling navigateHandler.saveAnswer()", error);
+    }
+      */
   }
+
+
 
   return (
     <div className={styles.questionComponent}>
@@ -50,13 +104,17 @@ function QuestionComponent({ question, navigateHandler, questionnumber }: Props)
                 name="answer"
                 value={ans.selection}
                 onChange={(e) => setUserAnswer(e.target.value)}
+                disabled={!active}
               />
               {ans.selection}: {ans.answer}
             </label>
           </div>
         ))}
       </form>
-
+      <button type="button" className={styles.button} onClick={saveAnswer}>
+        Next
+      </button>
+      {/*
       {answer && (
         <div className={styles.reviewsection}>
           <Card>{result}</Card>
@@ -65,14 +123,22 @@ function QuestionComponent({ question, navigateHandler, questionnumber }: Props)
       )}
 
       {answer ? (
-        <button className={styles.button} onClick={navigateHandler.nextQuestion}>
+        <button
+          className={styles.button}
+          onClick={navigateHandler.nextQuestion}
+        >
           Next
         </button>
       ) : (
-        <button className={styles.button} type="button" onClick={saveAnswerCompare}>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={saveAnswer}
+        >
           Save
         </button>
       )}
+      */}
     </div>
   );
 }

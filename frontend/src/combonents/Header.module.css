@@ -1,3 +1,7 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
 .header {
     display: flex;
     flex-direction: row;
@@ -19,8 +23,8 @@
     justify-content: space-around;
 }
 .logocontainer img{
-    width: 3em;
-    height: 3rem;
+    width: 5rem;
+    height: 4rem;
 }
 .links{
     display: flex;
@@ -30,31 +34,37 @@
     gap: 1rem;
 }
 
-/* Footer styling */
-
+/* Footrt styling */
 .footer {
-  background-color: #f4f4f4;
-  padding: 1.5rem;
+  background-color: #fefefe;
+  padding: 2rem 1.5rem;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #333;
-  border-top: 1px solid #ddd;
+  border-top: 2px solid #32CD32; /* green accent */
   margin-top: 4rem;
 }
 
+.footer p {
+  margin: 0.5rem 0;
+}
+
 .links a {
-  color: #111111;
+  color: #0e0e0e; /* orange for links */
   text-decoration: none;
-  margin-right: 1rem;
-  padding: .5rem;
-  border-radius: 4px;
-  transition: background-color 0.2s ease-in-out;
+  margin: 0 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.25s ease-in-out;
 }
 
 .links a:hover {
-  background-color: #c8f3a6;
-  color:#dd6b20;
+  background-color: #32CD32; /* green hover */
+  color: #fff;
+  border: .5px solid #ff6600;
 }
+
 
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
