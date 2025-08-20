@@ -1,27 +1,9 @@
 import { useState} from "react";
 import styles from "./Question.module.css";
 import { useAnsweredQuestions } from "../store/QuestionStore";
-import type { AnsweredQuestionType } from "../types/QuestionType";
+import type { AnsweredQuestionType,QuestionType } from "../types/QuestionType";
+import TimerCombonent from "./TimerCombonent";
 //import Card from "./UI/Card";
-
-interface Choice {
-  selection: string;
-  answer: string;
-}
-
-interface QuestionType {
-  questionText: string;
-  correctAnswer: string;
-  questionid: string;
-  examcode: string;
-  difficulty: string;
-  section_module: string;
-  isFree: boolean;
-  isGeneral: boolean;
-  choices: Choice[];
-  domain: string;
-  explanation: string;
-}
 
 type NavigateHandlerType = {
   nextQuestion: () => void;
@@ -92,6 +74,7 @@ function QuestionComponent({
 
   return (
     <div className={styles.questionComponent}>
+      <TimerCombonent />
       <form>
         <p className={styles.question}>
           Question {questionnumber + 1}: {question.questionText}

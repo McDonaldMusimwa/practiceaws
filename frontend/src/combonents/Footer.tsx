@@ -1,12 +1,14 @@
 import styles from './Footer.module.css';
 import { FaGithub } from "react-icons/fa";
 import { Link } from 'react-router';
-
+ import { useAnsweredQuestions } from "../store/QuestionStore";
 function Footer() {
+ 
   const currentYear = new Date().getFullYear();
   const githubLink = "https://github.com/McDonaldMusimwa/practiceaws.git";
   const examLink = "https://aws.amazon.com/certification/certified-solutions-architect-associate/";
-
+  const answeredQuestions = useAnsweredQuestions((state) => state.answeredquestions);
+console.log(answeredQuestions)
   return (
     <footer className={styles.footer}>
       <p>
@@ -15,7 +17,7 @@ function Footer() {
       </p>
       <p className={styles.links}>
       <Link 
-  to={examLink} 
+  to={examLink}  
   target="_blank" 
   rel="noopener noreferrer"
 >
