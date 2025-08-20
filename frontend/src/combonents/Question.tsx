@@ -1,30 +1,7 @@
 import { useState } from "react";
 import styles from "./Question.module.css";
 import Card from "./UI/Card";
-
-interface Choice {
-  selection: string;
-  answer: string;
-}
-
-interface QuestionType {
-  questionText: string;
-  correctAnswer: string;
-  questionid: string;
-  examcode: string;
-  difficulty: string;
-  section_module: string;
-  isFree: boolean;
-  isGeneral: boolean;
-  choices: Choice[];
-  domain: string;
-  explanation: string;
-}
-
-type NavigateHandlerType = {
-  nextQuestion: () => void;
-  saveAnswer: () => void;
-};
+import type{ NavigateHandlerType, QuestionType } from "../const/types";
 
 type Props = {
   question: QuestionType;

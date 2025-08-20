@@ -7,7 +7,7 @@ type Props = {
 
 function HomeStart({ startQuestionaire,exam }: Props) {
     const [startTimer, setStartTimer] = useState(false);
-
+console.log(startTimer);
   const handleStart = () => {
     if(startQuestionaire === null || typeof startQuestionaire !== 'function') {
         throw new Error('Start is not a function');

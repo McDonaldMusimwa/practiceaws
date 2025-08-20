@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import HeroImage from '../assets/hero.png';
 export default function About() {
   const navigation = useNavigate();
-  const navigateToQuestion = () => navigation('/questions');
+  const navigateToQuestion = () => navigation('/Questionares');
   return (
     <div className={styles.container}>
       <>
