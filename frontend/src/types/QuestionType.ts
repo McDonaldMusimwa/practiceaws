@@ -15,3 +15,7 @@ export interface QuestionType {
     domain: string;
     explanation: string;
 }
+
+export interface AnsweredQuestionType extends QuestionType {
+userAnswer:string
+}

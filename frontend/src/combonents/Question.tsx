@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState} from "react";
 import styles from "./Question.module.css";
-import Card from "./UI/Card";
+import { useAnsweredQuestions } from "../store/QuestionStore";
+import type { AnsweredQuestionType } from "../types/QuestionType";
+//import Card from "./UI/Card";
 
 interface Choice {
   selection: string;
@@ -37,44 +39,41 @@ function QuestionComponent({
   navigateHandler,
   questionnumber,
 }: Props) {
-  const [answer, setAnswer] = useState<string>("");
+  const saveAnswerToGlobalState = useAnsweredQuestions(
+    (state) => state.saveAnsweredQuestions
+  );
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [result, setResult] = useState<string>("");
   const [active, setActive] = useState(true);
-  const [questionAnswered, setQuestionAnswered] = useState([]);
+
 
   if (!question) {
     throw new Error("Question cannot be null or undefined");
   }
 
-  function saveAnswerCompare() {
-    if (!question || !question.correctAnswer) {
-      console.error("Question or correctAnswer cannot be null or undefined");
-      return;
-    }
-
-    const correctAnswer = question.correctAnswer;
-    setAnswer(correctAnswer);
+  function saveAnswer() {
+    console.log(userAnswer);
 
     if (!userAnswer) {
       setResult("⚠️ Please select an answer before saving");
       return;
     }
-
     setActive(false);
 
     try {
-      setQuestionAnswered((prev) => [
-        ...prev,
-        {
-          ...question,
-          userAnswer,
-        },
-      ]);
+      const answeredQuestion: AnsweredQuestionType = {
+        ...question,
+        userAnswer: userAnswer,
+      };
+   
+
+      saveAnswerToGlobalState(answeredQuestion);
+      navigateHandler.nextQuestion();
     } catch (error) {
       console.error("Error setting questionAnswered", error);
     }
 
+    /*
     if (correctAnswer === userAnswer) {
       setResult("✅ Correct");
     } else {
@@ -86,7 +85,10 @@ function QuestionComponent({
     } catch (error) {
       console.error("Error calling navigateHandler.saveAnswer()", error);
     }
+      */
   }
+
+
 
   return (
     <div className={styles.questionComponent}>
@@ -109,7 +111,10 @@ function QuestionComponent({
           </div>
         ))}
       </form>
-
+      <button type="button" className={styles.button} onClick={saveAnswer}>
+        Next
+      </button>
+      {/*
       {answer && (
         <div className={styles.reviewsection}>
           <Card>{result}</Card>
@@ -128,11 +133,12 @@ function QuestionComponent({
         <button
           className={styles.button}
           type="button"
-          onClick={saveAnswerCompare}
+          onClick={saveAnswer}
         >
           Save
         </button>
       )}
+      */}
     </div>
   );
 }
