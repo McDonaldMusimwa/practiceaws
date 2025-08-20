@@ -1,0 +1,28 @@
+.footer {
+  background-color: #fefefe;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+  border-top: 2px solid #32CD32; /* green accent */
+  margin-top: 4rem;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.links a {
+  color: #FFA500; /* orange for links */
+  text-decoration: none;
+  margin: 0 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.25s ease-in-out;
+}
+
+.links a:hover {
+  background-color: #32CD32; /* green hover */
+  color: #fff;
+}

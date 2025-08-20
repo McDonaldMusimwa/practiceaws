@@ -32,16 +32,27 @@ type Props = {
   questionnumber: number;
 };
 
-function QuestionComponent({ question, navigateHandler, questionnumber }: Props) {
+function QuestionComponent({
+  question,
+  navigateHandler,
+  questionnumber,
+}: Props) {
   const [answer, setAnswer] = useState<string>("");
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [result, setResult] = useState<string>("");
+  const [active, setActive] = useState(true);
+  const [questionAnswered, setQuestionAnswered] = useState([]);
 
   if (!question) {
     throw new Error("Question cannot be null or undefined");
   }
 
   function saveAnswerCompare() {
+    if (!question || !question.correctAnswer) {
+      console.error("Question or correctAnswer cannot be null or undefined");
+      return;
+    }
+
     const correctAnswer = question.correctAnswer;
     setAnswer(correctAnswer);
 
@@ -50,13 +61,31 @@ function QuestionComponent({ question, navigateHandler, questionnumber }: Props)
       return;
     }
 
+    setActive(false);
+
+    try {
+      setQuestionAnswered((prev) => [
+        ...prev,
+        {
+          ...question,
+          userAnswer,
+        },
+      ]);
+    } catch (error) {
+      console.error("Error setting questionAnswered", error);
+    }
+
     if (correctAnswer === userAnswer) {
       setResult("✅ Correct");
     } else {
       setResult("❌ Incorrect answer");
     }
 
-    navigateHandler.saveAnswer();
+    try {
+      navigateHandler.saveAnswer();
+    } catch (error) {
+      console.error("Error calling navigateHandler.saveAnswer()", error);
+    }
   }
 
   return (
@@ -73,6 +102,7 @@ function QuestionComponent({ question, navigateHandler, questionnumber }: Props)
                 name="answer"
                 value={ans.selection}
                 onChange={(e) => setUserAnswer(e.target.value)}
+                disabled={!active}
               />
               {ans.selection}: {ans.answer}
             </label>
@@ -88,11 +118,18 @@ function QuestionComponent({ question, navigateHandler, questionnumber }: Props)
       )}
 
       {answer ? (
-        <button className={styles.button} onClick={navigateHandler.nextQuestion}>
+        <button
+          className={styles.button}
+          onClick={navigateHandler.nextQuestion}
+        >
           Next
         </button>
       ) : (
-        <button className={styles.button} type="button" onClick={saveAnswerCompare}>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={saveAnswerCompare}
+        >
           Save
         </button>
       )}
