@@ -36,7 +36,7 @@ function QuestionComponent({
   function saveAnswer() {
     console.log(userAnswer);
 
-    if (!userAnswer) {
+    if (userAnswer.length===0) {
       setResult("⚠️ Please select an answer before saving");
       return;
     }
@@ -79,6 +79,7 @@ function QuestionComponent({
         <p className={styles.question}>
           Question {questionnumber + 1}: {question.questionText}
         </p>
+        {result && <p className={styles.result}>{result}</p>}
         {question.choices.map((ans) => (
           <div key={ans.selection} className={styles.answers}>
             <label>
@@ -94,7 +95,7 @@ function QuestionComponent({
           </div>
         ))}
       </form>
-      <button type="button" className={styles.button} onClick={saveAnswer}>
+      <button type="button" disabled={!active} className={styles.button} onClick={saveAnswer}>
         Next
       </button>
       {/*

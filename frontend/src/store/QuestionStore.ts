@@ -2,28 +2,26 @@ import { create } from "zustand";
 import type { QuestionType, AnsweredQuestionType } from "../types/QuestionType";
 
 interface QuestionStore {
-  questions: QuestionType[]; // Use array type
+  questions: QuestionType[];
   loadQuestions: (questions: QuestionType[]) => void;
   resetQuestion: () => void;
 }
 
 interface AnsweredQuestionsStore {
-  answeredquestions: AnsweredQuestionType[]; // Use array type
-  saveAnsweredQuestions: (answeredquestions: AnsweredQuestionType) => void;
-  // This function will now add a single answered question
+  answeredquestions: AnsweredQuestionType[];
+  saveAnsweredQuestions: (answeredquestion: AnsweredQuestionType) => void;
 }
 
 export const useQuestionStore = create<QuestionStore>((set) => ({
   questions: [],
-  loadQuestions: (questions) => set({ questions }),
+  loadQuestions: (questions: QuestionType[]) => set({ questions }),
   resetQuestion: () => set({ questions: [] }),
 }));
 
 export const useAnsweredQuestions = create<AnsweredQuestionsStore>((set) => ({
   answeredquestions: [],
-  saveAnsweredQuestions: (answeredquestion) =>
+  saveAnsweredQuestions: (answeredquestion: AnsweredQuestionType) =>
     set((state) => ({
-      // Use the spread operator to add the new answered question to the existing array
       answeredquestions: [...state.answeredquestions, answeredquestion],
     })),
 }));

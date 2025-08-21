@@ -30,7 +30,7 @@ function HomeStart({ startQuestionaire, exam }: Props) {
   };
   console.log(startTimer);
   const images = [Img1, Img2, Img3, Img4];
-  console.log(images[Math.floor(Math.random() * images.length)]);
+  
   return (
     <>
       <div className={styles.homeStart}>
