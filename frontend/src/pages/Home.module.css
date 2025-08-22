@@ -182,7 +182,7 @@
 /*mobile */
 @media (max-width: 768px) {
   .container {
-    padding: 2rem 1rem;
+  
   }
 
   .container > img {
@@ -192,6 +192,7 @@
 
   .header {
     grid-template-columns: 1fr;
+    top: 100px;
     padding: 2rem 1rem;
     text-align: center;
   }

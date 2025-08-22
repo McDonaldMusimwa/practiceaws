@@ -39,7 +39,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin: 3rem 2rem;
 }
 
 /* Cards */
@@ -98,6 +98,12 @@
 
 /* Responsive */
 @media (max-width: 600px) {
+  .hero{
+    top: 150px;
+    margin-top: 3rem;
+    padding: 1rem;
+ position: static;
+  }
   .homehero {
     flex-direction: column;
     gap: 1.5rem;
