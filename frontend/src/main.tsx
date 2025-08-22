@@ -8,18 +8,20 @@ import About from './pages/About.tsx';
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from './combonents/Header.tsx';
 import Footer from './combonents/Footer.tsx';
+import ExamSummaryPage from './pages/Exam/ExamSummaryPage.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-  <Header />
+    <Header />
     <Routes>
-<Route path='About' element={<About />} />
-      <Route  path='/Questionares' element={<App />} />
-      <Route path='SAA-C03' element={<ExamBasePage />} /> 
-      <Route path='CP-C03' element={<ExamBasePage/>} /> 
+      <Route path='About' element={<About />} />
+      <Route path='/Questionares' element={<App />} />
+      <Route path='SAA-C03' element={<ExamBasePage />} />
+      <Route path='CP-C03' element={<ExamBasePage />} />
       <Route path='AIP' element={<ExamBasePage />} />
       <Route index path='/' element={<Home />} />
+      <Route path='/Exam/Summary' element={<ExamSummaryPage />} />
 
     </Routes>
     <Footer />
