@@ -5,6 +5,7 @@ import type { AnsweredQuestionType,QuestionType } from "../types/QuestionType";
 import TimerCombonent from "./TimerCombonent";
 import { useQuestionStore } from "../store/QuestionStore";
 import { useAnsweredQuestions } from "../store/QuestionStore";
+import { TrackQuestions } from "./TrackQuestions";
 //import Card from "./UI/Card";
 
 type NavigateHandlerType = {
@@ -37,13 +38,13 @@ const numberanswered = useAnsweredQuestions(
 
 )
 
-console.log("We have answered " + numberanswered +"Out of " + numberquestions)
+
   if (!question) {
     throw new Error("Question cannot be null or undefined");
   }
 
   function saveAnswer() {
-    console.log(userAnswer);
+   
 
     if (userAnswer.length===0) {
       setResult("⚠️ Please select an answer before saving");
@@ -59,6 +60,7 @@ console.log("We have answered " + numberanswered +"Out of " + numberquestions)
    
 
       saveAnswerToGlobalState(answeredQuestion);
+      console.log("We have answered " + numberanswered +" Out of " + numberquestions)
       navigateHandler.nextQuestion();
     } catch (error) {
       console.error("Error setting questionAnswered", error);
@@ -67,13 +69,14 @@ console.log("We have answered " + numberanswered +"Out of " + numberquestions)
    
   }
 
-if (numberanswered === numberquestions-1) {
+if (numberanswered === numberquestions) {
   window.alert("You have reached the last question");
 }
 
   return (
     <div className={styles.questionComponent}>
       <TimerCombonent />
+      <TrackQuestions questionnumber={questionnumber+1}/>
       <form>
         <p className={styles.question}>
           Question {questionnumber + 1}: {question.questionText}

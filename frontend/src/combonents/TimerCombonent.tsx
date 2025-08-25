@@ -24,7 +24,7 @@ function DraggableBox() {
   }, [time]);
   return (
     <div style={{ position: "absolute", width: "100vw", height: "20vh" }}>
-...
+
     <motion.div
       drag
       dragConstraints={{ left: 100, right: -100, top: -100, bottom: 100 }}

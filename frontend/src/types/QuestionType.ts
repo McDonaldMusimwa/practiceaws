@@ -19,3 +19,7 @@ export interface QuestionType {
 export interface AnsweredQuestionType extends QuestionType {
 userAnswer:string
 }
+
+export interface TrackQuestion{
+    questionnumber:number
+}

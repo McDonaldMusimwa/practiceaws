@@ -2,8 +2,7 @@ import { useAnsweredQuestions } from "../../store/QuestionStore";
 import QuestionReview from "../../combonents/QuestionReview";
 import styles from "./ExamBaseSummaryPage.module.css";
 import { useNavigate } from "react-router";
-import { nav } from "framer-motion/client";
-import { use } from "react";
+
 
 function ExamSummaryPage() {
     const navigate = useNavigate()
