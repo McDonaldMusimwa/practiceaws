@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await getQuestions(pathname, "2");
+        const res = await getQuestions(pathname, "1");
         if (res) {
           loadQuestions(res); // only load into store
         }

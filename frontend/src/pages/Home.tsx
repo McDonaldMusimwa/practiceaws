@@ -2,7 +2,7 @@
 import styles from './Home.module.css';
 import { useNavigate } from 'react-router';
 import HeroImage from '../assets/hero.png';
-export default function About() {
+export default function Home() {
   const navigation = useNavigate();
   const navigateToQuestion = () => navigation('/Questionares');
   return (

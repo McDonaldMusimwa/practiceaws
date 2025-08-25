@@ -1,8 +1,11 @@
 import { useState} from "react";
 import styles from "./Question.module.css";
-import { useAnsweredQuestions } from "../store/QuestionStore";
+import { useNavigate } from "react-router";
 import type { AnsweredQuestionType,QuestionType } from "../types/QuestionType";
 import TimerCombonent from "./TimerCombonent";
+import { useQuestionStore } from "../store/QuestionStore";
+import { useAnsweredQuestions } from "../store/QuestionStore";
+import { TrackQuestions } from "./TrackQuestions";
 //import Card from "./UI/Card";
 
 type NavigateHandlerType = {
@@ -27,6 +30,13 @@ function QuestionComponent({
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [result, setResult] = useState<string>("");
   const [active, setActive] = useState(true);
+  const navigate = useNavigate();
+/* determine number of question */
+const numberquestions = useQuestionStore((state) => state.questions.length);
+const numberanswered = useAnsweredQuestions(
+  (state) => state.answeredquestions.length
+
+)
 
 
   if (!question) {
@@ -34,7 +44,7 @@ function QuestionComponent({
   }
 
   function saveAnswer() {
-    console.log(userAnswer);
+   
 
     if (userAnswer.length===0) {
       setResult("⚠️ Please select an answer before saving");
@@ -50,31 +60,23 @@ function QuestionComponent({
    
 
       saveAnswerToGlobalState(answeredQuestion);
+      console.log("We have answered " + numberanswered +" Out of " + numberquestions)
       navigateHandler.nextQuestion();
     } catch (error) {
       console.error("Error setting questionAnswered", error);
     }
 
-    /*
-    if (correctAnswer === userAnswer) {
-      setResult("✅ Correct");
-    } else {
-      setResult("❌ Incorrect answer");
-    }
-
-    try {
-      navigateHandler.saveAnswer();
-    } catch (error) {
-      console.error("Error calling navigateHandler.saveAnswer()", error);
-    }
-      */
+   
   }
 
-
+if (numberanswered === numberquestions) {
+  window.alert("You have reached the last question");
+}
 
   return (
     <div className={styles.questionComponent}>
       <TimerCombonent />
+      <TrackQuestions questionnumber={questionnumber+1}/>
       <form>
         <p className={styles.question}>
           Question {questionnumber + 1}: {question.questionText}
@@ -95,35 +97,12 @@ function QuestionComponent({
           </div>
         ))}
       </form>
-      <button type="button" disabled={!active} className={styles.button} onClick={saveAnswer}>
-        Next
-      </button>
-      {/*
-      {answer && (
-        <div className={styles.reviewsection}>
-          <Card>{result}</Card>
-          <Card>{question.explanation}</Card>
-        </div>
-      )}
-
-      {answer ? (
-        <button
-          className={styles.button}
-          onClick={navigateHandler.nextQuestion}
-        >
-          Next
-        </button>
-      ) : (
-        <button
-          className={styles.button}
-          type="button"
-          onClick={saveAnswer}
-        >
-          Save
-        </button>
-      )}
-      */}
-    </div>
+      {numberanswered === numberquestions-1 ? (<button type="button" disabled={!active} className={styles.button} onClick={()=> navigate("/Exam/Summary")}>
+         Finish Questionare 
+      </button>) :( <button type="button" disabled={!active} className={styles.button} onClick={saveAnswer}>
+      Next
+      </button>)}
+          </div>
   );
 }
 

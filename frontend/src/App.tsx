@@ -12,10 +12,14 @@ function App() {
   return (
     <>
       <section className="hero">
-        <h1 className="heroTitle">Welcome to Practice Solution</h1>
+        <h1 className="heroTitle">Level Up Your AWS Skills</h1>
         <p className="heroSubtitle">
-          Choose a quick test to get started, or{" "}
-          <span className="highlight">create an account</span> for more domain-specific practice questions.
+          Get hands-on with{" "}
+          <span className="highlight">realistic practice tests</span> designed to
+          sharpen your knowledge and boost your exam confidence.  
+          Start a quick test below, or{" "}
+          <span className="highlight">create an account</span> to unlock
+          personalized question banks.
         </p>
       </section>
 

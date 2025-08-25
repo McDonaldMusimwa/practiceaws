@@ -10,6 +10,8 @@ interface QuestionStore {
 interface AnsweredQuestionsStore {
   answeredquestions: AnsweredQuestionType[];
   saveAnsweredQuestions: (answeredquestion: AnsweredQuestionType) => void;
+  resetAnsweredQuestions: () => void;
+  
 }
 
 export const useQuestionStore = create<QuestionStore>((set) => ({
@@ -24,4 +26,6 @@ export const useAnsweredQuestions = create<AnsweredQuestionsStore>((set) => ({
     set((state) => ({
       answeredquestions: [...state.answeredquestions, answeredquestion],
     })),
+
+     resetAnsweredQuestions: () => set({ answeredquestions: [] }),
 }));
