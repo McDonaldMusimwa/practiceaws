@@ -1,29 +1,19 @@
 import { useState} from "react";
 import styles from "./Question.module.css";
 import { useNavigate } from "react-router";
-import type { AnsweredQuestionType,QuestionType } from "../types/QuestionType";
+import type { AnsweredQuestionType,Question } from "../types/QuestionType";
 import TimerCombonent from "./TimerCombonent";
 import { useQuestionStore } from "../store/QuestionStore";
 import { useAnsweredQuestions } from "../store/QuestionStore";
 import { TrackQuestions } from "./TrackQuestions";
+//import questions from "../utils/const";
 //import Card from "./UI/Card";
-
-type NavigateHandlerType = {
-  nextQuestion: () => void;
-  saveAnswer: () => void;
-};
-
-type Props = {
-  question: QuestionType;
-  navigateHandler: NavigateHandlerType;
-  questionnumber: number;
-};
 
 function QuestionComponent({
   question,
   navigateHandler,
   questionnumber,
-}: Props) {
+}:Question) {
   const saveAnswerToGlobalState = useAnsweredQuestions(
     (state) => state.saveAnsweredQuestions
   );
