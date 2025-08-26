@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  console.log("Its mobile => " + isMobile);
+  
   // Update on resize
   useEffect(() => {
     const handleResize = () => {
@@ -23,47 +23,55 @@ function Header() {
     { route: "/", name: "Home" },
     { route: "/Questionares", name: "Questionare" },
     { route: "/About", name: "About" },
-    {route:"/Login",name:"Login"},
+    { route: "/Login", name: "Login" },
   ];
 
-
   return (
-    <nav className={styles.header}>
-      {/* Logo */}
-  <div className={styles.logocontainer}>
-  <NavLink to={"/"} className={styles.brand}>
-    <img src={logo} alt="logo" className={styles.logo} />
-  </NavLink>
-
-  {/* Mobile Menu Toggle */}
-  {isMobile && (
-    <div className={styles.menuToggle} onClick={() => setIsOpen(!isOpen)}>
-      {isOpen ? <IoCloseOutline size={28} /> : <CiMenuBurger size={28} />}
-    </div>
-  )}
-</div>
-
-
-      {/* Navigation Links */}
-      <div
-        className={`${styles.links} ${
-          isMobile ? styles.mobile : styles.desktop
-        } ${isOpen ? styles.show : ""}`}
-      >
-        {navLinks.map((link) => (
-          <NavLink
-            key={link.name}
-            to={link.route}
-            className={({ isActive }) =>
-              isActive ? styles.activeLink : styles.link
-            }
-            onClick={() => isMobile && setIsOpen(false)} // close menu on click in mobile
-          >
-            {link.name}
+    <header>
+      {" "}
+      <nav className={styles.header}>
+        {/* Logo */}
+        <div className={styles.logocontainer}>
+          <NavLink to={"/"} className={styles.brand}>
+            <img src={logo} alt="logo" className={styles.logo} />
           </NavLink>
-        ))}
-      </div>
-    </nav>
+
+          {/* Mobile Menu Toggle */}
+          {isMobile && (
+            <div
+              className={styles.menuToggle}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? (
+                <IoCloseOutline size={28} />
+              ) : (
+                <CiMenuBurger size={28} />
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Navigation Links */}
+        <div
+          className={`${styles.links} ${
+            isMobile ? styles.mobile : styles.desktop
+          } ${isOpen ? styles.show : ""}`}
+        >
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.route}
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.link
+              }
+              onClick={() => isMobile && setIsOpen(false)} // close menu on click in mobile
+            >
+              {link.name}
+            </NavLink>
+          ))}
+        </div>
+      </nav>
+    </header>
   );
 }
 
