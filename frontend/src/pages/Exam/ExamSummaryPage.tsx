@@ -32,7 +32,7 @@ function ExamSummaryPage() {
     navigate('/Questionares')
     resetAnsweredQuestions()
   }
-
+let questionnumber = 1
   return (
     <div className={styles.summaryContainer}>
       <div className={styles.resultBox}>
@@ -51,7 +51,7 @@ function ExamSummaryPage() {
             <QuestionReview
               key={index}
               answeredquestion={answeredquestion}
-           
+           questionNumber={questionnumber++}
             />
           );
         })}

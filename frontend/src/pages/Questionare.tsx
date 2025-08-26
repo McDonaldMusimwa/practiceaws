@@ -4,8 +4,9 @@ import { useLocation } from "react-router";
 import getQuestions from "../utils/http";
 import { useQuestionStore } from "../store/QuestionStore";
 import type { QuestionType } from "../types/QuestionType";
-
-function Home() {
+import LoadingGif from "../assets/loading.gif";
+import styles from "./Questionare.module.css"
+function QuestionareBasePage() {
   const questions = useQuestionStore((state) => state.questions);
   const loadQuestions = useQuestionStore((state) => state.loadQuestions);
   const location = useLocation();
@@ -39,6 +40,12 @@ function Home() {
 
   return (
     <>
+  {questions.length === 0 && (
+  <div className={styles.loadingcontainer}>
+    <img src={LoadingGif} alt="loading" className={styles.loadinggif} />
+  </div>
+)}
+
       {questions.map((question: QuestionType, i: number) => {
         if (i === tracker) {
           return (
@@ -56,4 +63,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default QuestionareBasePage;

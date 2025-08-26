@@ -15,7 +15,15 @@ export interface QuestionType {
     domain: string;
     explanation: string;
 }
-
+export type NavigateHandlerType = {
+  nextQuestion: () => void;
+  saveAnswer: () => void;
+};
+export type Question = {
+  question: QuestionType;
+  navigateHandler: NavigateHandlerType;
+  questionnumber: number;
+};
 export interface AnsweredQuestionType extends QuestionType {
 userAnswer:string
 }

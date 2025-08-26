@@ -5,10 +5,11 @@ import Card from "./UI/Card";
 
 type Props = {
   answeredquestion: AnsweredQuestionType;
-  index?: number; // optional, in case you want dynamic numbering
+  index?: number;
+  questionNumber?: number; // optional, in case you want dynamic numbering
 };
 
-function QuestionReview({ answeredquestion, index = 0 }: Props) {
+function QuestionReview({ answeredquestion, index = 0 ,questionNumber}: Props) {
   const [result, setResult] = useState<string>("");
 
   if (!answeredquestion) {
@@ -33,7 +34,7 @@ function QuestionReview({ answeredquestion, index = 0 }: Props) {
     <div className={styles.questionComponent}>
       <form>
         <p className={styles.question}>
-          Question {index + 1}: {questionText}
+          Question {questionNumber}: {questionText}
         </p>
 
         {choices.map((ans) => (

@@ -1,4 +1,4 @@
-/*************  ✨ Practice Solution ⭐  *************/
+***  ✨ Practice Solution ⭐  ***
 # AWS Practice Questions Web App
 
 This project is a serverless web application designed to help users prepare for AWS certification exams. It features a frontend built with React and a backend powered by Node.js.
@@ -45,4 +45,4 @@ To provide aspiring AWS-certified professionals with a hands-on way to test and 
 - `frontend/`: Contains the React application code
 - `backend/`: Contains the Node.js Lambda functions and DynamoDB interactions
 
-/*******  b5cdfe12-e82b-4981-a3d1-1ec0dd798366  *******/
+***  End  ***

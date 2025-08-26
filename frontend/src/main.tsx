@@ -1,29 +1,18 @@
+import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
+import "./index.css";
+import App from "./App.tsx";
+import { Buffer } from 'buffer';
 
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import ExamBasePage from './pages/Exam/ExamBasePage.tsx';
-import Home from './pages/Home.tsx';
-import About from './pages/About.tsx';
-import { BrowserRouter, Route, Routes } from "react-router";
-import Header from './combonents/Header.tsx';
-import Footer from './combonents/Footer.tsx';
-import ExamSummaryPage from './pages/Exam/ExamSummaryPage.tsx';
+window.global = window;
+window.Buffer = Buffer;
 
+// The rest of your app's code...
 
-createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <Header />
-    <Routes>
-      <Route path='About' element={<About />} />
-      <Route path='/Questionares' element={<App />} />
-      <Route path='SAA-C03' element={<ExamBasePage />} />
-      <Route path='CP-C03' element={<ExamBasePage />} />
-      <Route path='AIP' element={<ExamBasePage />} />
-      <Route index path='/' element={<Home />} />
-      <Route path='/Exam/Summary' element={<ExamSummaryPage />} />
+createRoot(document.getElementById("root")!).render(
 
-    </Routes>
-    <Footer />
-  </BrowserRouter>
-)
+    <StrictMode>
+     <App />
+    </StrictMode>
+
+);
