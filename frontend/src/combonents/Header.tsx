@@ -23,7 +23,7 @@ function Header() {
     { route: "/", name: "Home" },
     { route: "/Questionares", name: "Questionare" },
     { route: "/About", name: "About" },
-    { route: "/Login", name: "Login" },
+   /* { route: "/Login", name: "Login" },*/
   ];
 
   return (

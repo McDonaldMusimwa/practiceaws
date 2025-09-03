@@ -59,10 +59,6 @@ const numberanswered = useAnsweredQuestions(
    
   }
 
-if (numberanswered === numberquestions) {
-  window.alert("You have reached the last question");
-}
-
   return (
     <div className={styles.questionComponent}>
       <TimerCombonent />
@@ -87,7 +83,7 @@ if (numberanswered === numberquestions) {
           </div>
         ))}
       </form>
-      {numberanswered === numberquestions-1 ? (<button type="button" disabled={!active} className={styles.button} onClick={()=> navigate("/Exam/Summary")}>
+      {numberanswered === numberquestions-1 ? (<button type="button" disabled={!active} className={styles.button} onClick={()=>{ saveAnswer();navigate("/Exam/Summary")}}>
          Finish Questionare 
       </button>) :( <button type="button" disabled={!active} className={styles.button} onClick={saveAnswer}>
       Next
