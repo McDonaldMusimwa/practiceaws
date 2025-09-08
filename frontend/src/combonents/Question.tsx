@@ -1,6 +1,6 @@
 import { useState} from "react";
 import styles from "./Question.module.css";
-import { useNavigate } from "react-router";
+import { useNavigate,useParams,Outlet } from "react-router";
 import type { AnsweredQuestionType,Question } from "../types/QuestionType";
 import TimerCombonent from "./TimerCombonent";
 import { useQuestionStore } from "../store/QuestionStore";
@@ -21,6 +21,7 @@ function QuestionComponent({
   const [result, setResult] = useState<string>("");
   const [active, setActive] = useState(true);
   const navigate = useNavigate();
+     const { examcode } = useParams<{ examcode: string }>();
 /* determine number of question */
 const numberquestions = useQuestionStore((state) => state.questions.length);
 const numberanswered = useAnsweredQuestions(
@@ -28,7 +29,10 @@ const numberanswered = useAnsweredQuestions(
 
 )
 
-
+console.log(
+  "Number Questions=>",numberquestions)
+console.log(
+  "Answered Questions=>",numberanswered)
   if (!question) {
     throw new Error("Question cannot be null or undefined");
   }
@@ -83,11 +87,30 @@ const numberanswered = useAnsweredQuestions(
           </div>
         ))}
       </form>
-      {numberanswered === numberquestions-1 ? (<button type="button" disabled={!active} className={styles.button} onClick={()=>{ saveAnswer();navigate("/Exam/Summary")}}>
-         Finish Questionare 
-      </button>) :( <button type="button" disabled={!active} className={styles.button} onClick={saveAnswer}>
-      Next
-      </button>)}
+   {numberanswered === numberquestions - 1 ? (
+  <button
+    type="button"
+    disabled={!active}
+    className={styles.button}
+    onClick={() => {
+      saveAnswer();
+      navigate(`/Questionares/${examcode}/Summary`);
+    }}
+  >
+    Finish Questionnaire
+  </button>
+) : (
+  <button
+    type="button"
+    disabled={!active}
+    className={styles.button}
+    onClick={saveAnswer}
+  >
+    Next
+  </button>
+)}
+<Outlet />
+
           </div>
   );
 }

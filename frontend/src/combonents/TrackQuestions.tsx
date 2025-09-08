@@ -7,7 +7,7 @@ import { useQuestionStore } from "../store/QuestionStore";
 export function TrackQuestions({questionnumber}:TrackQuestion) {
     const questions = useQuestionStore((state) => state.questions)
     console.log(questions)
-    let questionnumbers = []
+    const questionnumbers = []
     for (let i = 1; i < questions.length+1; i++) {
         questionnumbers[i] = i
     }

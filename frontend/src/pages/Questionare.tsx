@@ -1,6 +1,6 @@
 import QuestionComponent from "../combonents/Question";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useParams} from "react-router";
 import getQuestions from "../utils/http";
 import { useQuestionStore } from "../store/QuestionStore";
 import type { QuestionType } from "../types/QuestionType";
@@ -9,15 +9,16 @@ import styles from "./Questionare.module.css"
 function QuestionareBasePage() {
   const questions = useQuestionStore((state) => state.questions);
   const loadQuestions = useQuestionStore((state) => state.loadQuestions);
-  const location = useLocation();
-  const pathname: string = location.pathname.replace(/\//g, "");
+  //const location = useLocation();
+  //const pathname: string = location.pathname.replace(/^\/Questionares\/.*/, "");
+const { examcode } = useParams<{ examcode: string }>();
 
   const [tracker, setTracker] = useState(0);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await getQuestions(pathname, "1");
+        const res = await getQuestions(examcode, "1");
         if (res) {
           loadQuestions(res); // only load into store
         }
@@ -27,7 +28,7 @@ function QuestionareBasePage() {
     };
 
     fetchQuestions();
-  }, [pathname, loadQuestions]);
+  }, [examcode, loadQuestions]);
 
   const navigateHandler = {
     nextQuestion: () => {

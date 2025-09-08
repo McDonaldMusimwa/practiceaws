@@ -1,11 +1,12 @@
 import { useAnsweredQuestions } from "../../store/QuestionStore";
 import QuestionReview from "../../combonents/QuestionReview";
 import styles from "./ExamBaseSummaryPage.module.css";
-import { useNavigate } from "react-router";
+import { useNavigate} from "react-router";
 
 
 function ExamSummaryPage() {
     const navigate = useNavigate()
+ 
     const resetquestions = useAnsweredQuestions((state) => state.resetAnsweredQuestions);
   const answeredquestions = useAnsweredQuestions(
     (state) => state.answeredquestions
