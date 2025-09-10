@@ -11,20 +11,23 @@ import ExamSummaryPage from "./pages/Exam/ExamSummaryPage.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import SignUp from "./pages/Auth/Register.tsx";
 import Main from "./Main/Main.tsx";
-import { AuthProvider } from "react-oidc-context";
+import { useAuth } from "react-oidc-context";
 
 
 // Configure Amplify
 //Amplify.configure(awsExports);
-const cognitoAuthConfig = {
-  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_tNpZ7Kn4W",
-  client_id: "5vnnnbupq21711l42jtds0b2fr",
-  redirect_uri: "https://localhost:5173/Questionares",
-  response_type: "code",
-  scope: "phone openid email",
-};
+
 
 function App() {
+
+    const auth = useAuth();
+
+  const signOutRedirect = () => {
+    const clientId = "5vnnnbupq21711l42jtds0b2fr";
+    const logoutUri = "<logout uri>";
+    const cognitoDomain = "https://us-east-1tnpz7kn4w.auth.us-east-1.amazoncognito.com";
+    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
+  };
   return (
     <BrowserRouter>
       <Header />

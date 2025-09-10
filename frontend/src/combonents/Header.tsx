@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  
+
   // Update on resize
   useEffect(() => {
     const handleResize = () => {
@@ -23,7 +23,7 @@ function Header() {
     { route: "/", name: "Home" },
     { route: "Questionares", name: "Questionare" },
     { route: "About", name: "About" },
-   { route: "Login", name: "Login" },
+    { route: "Login", name: "Login" },
   ];
 
   return (
@@ -64,7 +64,8 @@ function Header() {
               className={({ isActive }) =>
                 isActive ? styles.activeLink : styles.link
               }
-              onClick={() => isMobile && setIsOpen(false)} // close menu on click in mobile
+              onClick={() => isMobile && setIsOpen(false)}
+              end // Add this prop to make the NavLink match the exact path
             >
               {link.name}
             </NavLink>

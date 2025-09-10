@@ -1,5 +1,6 @@
 /* Reset */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -40,7 +41,7 @@ body, html {
 }
 
 .links a {
-  color: #0e0e0e; 
+  color: #0e0e0e;
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
@@ -49,14 +50,16 @@ body, html {
 }
 
 .links a:hover {
-  background-color: #32CD32; /* green hover */
+  background-color: #32cd32; /* green hover */
   color: #fff;
   border: 0.5px solid #ff6600;
 }
 
 .activeLink {
-  color: #38bdf8; /* cyan for active */
-  font-weight: 600;
+  /* cyan for active */
+  background-color: #32cd32; /* green hover */
+  color: #fff;
+  border: 0.5px solid #ff6600;
 }
 
 /* Mobile toggle button */
@@ -77,13 +80,11 @@ body, html {
   top: 70px;
   right: 0;
   width: 30%;
-  background:#f9fdf9;
+  background: #f9fdf9;
   border: 1px solid #ddd;
   padding: 1rem;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-
- 
 }
 
 .mobile.show {
@@ -105,7 +106,7 @@ body, html {
   text-align: center;
   font-size: 0.95rem;
   color: #333;
-  border-top: 2px solid #32CD32; /* green accent */
+  border-top: 2px solid #32cd32; /* green accent */
   margin-top: 4rem;
 }
 
@@ -124,26 +125,26 @@ body, html {
   .menuToggle {
     display: block; /* show burger */
   }
-.logocontainer{
-   display: flex;
-  align-items: center;
-  justify-content: space-around; /* pushes children apart */
-  width: 100%;
-  padding: 0.5rem 1rem;
-}
+  .logocontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* pushes children apart */
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
   .logocontainer img {
     width: 4.5rem;
   }
 
   .brand {
-  display: flex;
-  align-items: center;
-}
+    display: flex;
+    align-items: center;
+  }
 
-.logo {
-  height: 40px; /* adjust as needed */
-  width: auto;
-}
+  .logo {
+    height: 40px; /* adjust as needed */
+    width: auto;
+  }
 
   .footer {
     font-size: 0.8rem;

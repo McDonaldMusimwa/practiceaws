@@ -3,6 +3,16 @@ import { StrictMode } from "react";
 import "./index.css";
 import App from "./App.tsx";
 import { Buffer } from 'buffer';
+import { AuthProvider } from "react-oidc-context";
+
+const cognitoAuthConfig = {
+  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_tNpZ7Kn4W",
+  client_id: "5vnnnbupq21711l42jtds0b2fr",
+  redirect_uri: "https://localhost:5173/Questionares",
+  response_type: "code",
+  scope: "email openid phone",
+};
+
 
 window.global = window;
 window.Buffer = Buffer;
@@ -12,7 +22,9 @@ window.Buffer = Buffer;
 createRoot(document.getElementById("root")!).render(
 
     <StrictMode>
-     <App />
+       <AuthProvider {...cognitoAuthConfig}>
+      <App />
+    </AuthProvider>
     </StrictMode>
 
 );
