@@ -33,3 +33,6 @@
   font-size: 0.95rem;
   color: #333;
 }
+.card:hover{
+  cursor: pointer;
+}
