@@ -7,6 +7,15 @@
   margin-top: 3rem;
   padding: 2rem;
 }
+.loggedIn{
+min-height: 40vh;
+  max-height: 80vh;
+
+  padding: 1rem auto;
+}
+.loggedIn h2{
+margin-top: 10%;
+}
 .formType{
     display: flex;
     justify-content: center;

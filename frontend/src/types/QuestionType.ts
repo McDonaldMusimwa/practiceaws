@@ -31,3 +31,9 @@ userAnswer:string
 export interface TrackQuestion{
     questionnumber:number
 }
+
+export interface SessionData {
+  email: string;
+  phone: string;
+  id: string;
+}

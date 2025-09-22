@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router";
 import Header from "./combonents/Header.tsx";
 import Footer from "./combonents/Footer.tsx";
+import React from "react";
 
 import Home from "./pages/Home.tsx";
 import About from "./pages/About.tsx";
@@ -21,7 +22,7 @@ function App() {
     children,
     section_module,
   }: {
-    children: JSX.Element;
+    children: React.JSX.Element;
     section_module?: string;
   }) => {
     // Always allow section 1
@@ -38,34 +39,45 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="About" element={<About />} />
+   <BrowserRouter>
+  <Header />
+  <Routes>
+    <Route index path="/" element={<Home />} />
+    <Route path="About" element={<About />} />
 
-        {/* Questionares is public */}
-        <Route path="Questionares" element={<Main />}>
-          <Route path=":examcode" element={<ExamSelectionBasePage />}>
-            <Route
-              path=":section_module"
-              element={
-                <ProtectedRoute section_module="{section_module}">
-                  <ExamBasePage />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="Summary" element={<ExamSummaryPage />} />
-            </Route>
-          </Route>
-        </Route>
+    {/* Questionares routes */}
+    <Route path="Questionares" element={<Main />} />
 
-        {/* Auth */}
-        <Route path="Login" element={<Login />} />
-        <Route path="Signup" element={<SignUp />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    {/* Selection page for an exam */}
+    <Route path="Questionares/:examcode" element={<ExamSelectionBasePage />} />
+
+    {/* Exam page per section */}
+    <Route
+      path="Questionares/:examcode/:section_module"
+      element={
+        <ProtectedRoute>
+          <ExamBasePage />
+        </ProtectedRoute>
+      }
+    />
+
+    {/* Summary page */}
+    <Route
+      path="Questionares/:examcode/:section_module/Summary"
+      element={
+        <ProtectedRoute>
+          <ExamSummaryPage />
+        </ProtectedRoute>
+      }
+    />
+
+    {/* Auth */}
+    <Route path="Login" element={<Login />} />
+    <Route path="Signup" element={<SignUp />} />
+  </Routes>
+  <Footer />
+</BrowserRouter>
+
   );
 }
 

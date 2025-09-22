@@ -4,10 +4,13 @@ import { NavLink } from "react-router";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState, useEffect } from "react";
+import { useAuth } from "react-oidc-context";
+
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const auth = useAuth();
 
   // Update on resize
   useEffect(() => {
@@ -18,14 +21,23 @@ function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+const profile = auth.user?.profile;
+let name_auth;
+if (auth.user) {
+  name_auth = "Logout";
+} else {
+  name_auth = "Login";
+}
+
 
   const navLinks = [
     { route: "/", name: "Home" },
     { route: "Questionares", name: "Questionare" },
     { route: "About", name: "About" },
-    { route: "Login", name: "Login" },
+    { route: "Login", name:name_auth },
   ];
 
+  console.log(JSON.stringify(profile))
   return (
     <header>
       {" "}
@@ -70,8 +82,10 @@ function Header() {
               {link.name}
             </NavLink>
           ))}
+           <span>{auth?.user?.profile.email}</span>
         </div>
       </nav>
+     
     </header>
   );
 }
