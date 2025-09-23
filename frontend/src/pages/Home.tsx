@@ -2,6 +2,7 @@
 import styles from './Home.module.css';
 import { useNavigate } from 'react-router';
 import HeroImage from '../assets/hero.png';
+import { motion } from "framer-motion";
 export default function Home() {
   const navigation = useNavigate();
   const navigateToQuestion = () => navigation('/Questionares');
@@ -23,9 +24,19 @@ export default function Home() {
             </button>
 
           </div>
-          <div className={styles.heroImage}>
-            <img src={HeroImage} alt="aws cloud prep" />
-          </div>
+          <motion.div
+          className={styles.heroImage}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <img 
+            src={HeroImage} 
+            alt="Hero" 
+            loading="lazy" 
+            style={{ maxWidth: '100%', height: 'auto' }} 
+          />
+        </motion.div>
         </section>
       </>
 
