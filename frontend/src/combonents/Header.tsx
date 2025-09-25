@@ -6,7 +6,6 @@ import { IoCloseOutline } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import { useAuth } from "react-oidc-context";
 
-
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -21,23 +20,21 @@ function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-const profile = auth.user?.profile;
-let name_auth;
-if (auth.user) {
-  name_auth = "Logout";
-} else {
-  name_auth = "Login";
-}
-
+  //const profile = auth.user?.profile;
+  let name_auth;
+  if (auth.user) {
+    name_auth = "Logout";
+  } else {
+    name_auth = "Login";
+  }
 
   const navLinks = [
     { route: "/", name: "Home" },
     { route: "Questionares", name: "Questionare" },
     { route: "About", name: "About" },
-    { route: "Login", name:name_auth },
   ];
+  const authLink = { route: "Login", name: name_auth };
 
-  console.log(JSON.stringify(profile))
   return (
     <header>
       {" "}
@@ -82,10 +79,18 @@ if (auth.user) {
               {link.name}
             </NavLink>
           ))}
-           <span>{auth?.user?.profile.email}</span>
-        </div>
+          {isMobile &&
+        <div className={styles.authLinks}>
+          <NavLink to={authLink.route} onClick={()=> isMobile && setIsOpen(false)} >{authLink.name}</NavLink>
+          <span className={styles.userName}>{auth?.user?.profile.email}</span>
+        </div>}
+        </div>{!isMobile &&
+        <div className={styles.authLinksDesktop}>
+         
+          <span className={styles.userName}>{auth?.user?.profile.email}</span>
+           <NavLink to={authLink.route}>{authLink.name}</NavLink>
+        </div>}
       </nav>
-     
     </header>
   );
 }

@@ -12,6 +12,7 @@ function Login() {
   if (auth.error) {
     return <div>Encountering error... {auth.error.message}</div>;
   }
+  console.log("Auth state:", auth);
   
 
   if (auth.isAuthenticated) {
@@ -23,17 +24,21 @@ function Login() {
         <pre>Email: {auth.user?.profile.email}</pre>
 
 
-        <button onClick={() => auth.removeUser()}>Sign out</button>
+        <button className={styles.signOut} onClick={() => auth.removeUser()}>Sign out</button>
       </div>
     );
   }
+  
+ 
 
   // If not authenticated, show login options
   return (
     <div className={styles.authcontainer}>
       <div className={styles.form}>
         <h1>Login / Register</h1>
-        <button onClick={() => auth.signinRedirect()}>Login</button>
+        <button onClick={() => {
+         console.log("Auth==>",auth);
+        auth.signinRedirect()}}>Login</button>
       
       </div>
 

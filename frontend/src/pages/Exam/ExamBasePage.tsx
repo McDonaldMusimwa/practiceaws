@@ -35,11 +35,33 @@ let examName ="";
 console.log(examName)
 
     return (
-        <div className={styles.base}>
-             {start?<Home /> :  <HomeStart exam={examName} startQuestionaire={startQuestionaireHandler} /> }
-   
-        </div>
-    );
+  <div className={styles.base}>
+    {start ? (
+      <Home />
+    ) : (
+      <div className={styles.examCard}>
+        <h1 className={styles.examTitle}>
+          {examName} Exam
+        </h1>
+        <p className={styles.examDescription}>
+          Prepare to start your {examName} practice test. Once you begin, a timer
+          will run and your answers will be saved.
+        </p>
+        <HomeStart
+          exam={examName}
+          startQuestionaire={startQuestionaireHandler}
+        />
+        <button
+          className={styles.startBtn}
+          onClick={startQuestionaireHandler}
+        >
+          Start Exam
+        </button>
+      </div>
+    )}
+  </div>
+);
+
 }
 
 export default ExamBasePage;

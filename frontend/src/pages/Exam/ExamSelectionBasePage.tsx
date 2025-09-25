@@ -61,7 +61,7 @@ function ExamSelectionBasePage() {
       {loading && <p>Loading sections...</p>}
       {error && <p className={styles.error}>{error}</p>}
 
-      <div>
+      <div className={styles.selectionSelection}>
         {sections.map((sec) => (
           <Card key={sec} onClick={() => examChoiceHandler(sec)}>
             Section {sec}
