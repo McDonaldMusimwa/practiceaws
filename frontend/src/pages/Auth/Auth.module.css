@@ -94,7 +94,7 @@
 }
 
 .form button:hover {
-  background: #2e7d32;
+  background: #ff9900;;
 }
 
 .imgcontainer {
@@ -118,9 +118,14 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .form{
+    padding: 0;
+    box-shadow: none;
+  }
   .authcontainer {
     flex-direction: column;
-    gap: 2rem;
+   margin-top: 2.5rem;
+    gap: 4rem 0;
     padding: 1rem;
   }
 

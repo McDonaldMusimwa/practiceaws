@@ -1,8 +1,9 @@
 import { Navigate } from "react-router";
 import { useAuth } from "react-oidc-context";
+import React from "react";
 
 interface ProtectedRouteProps {
-  children: JSX.Element;
+  children: React.JSX.Element;
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {

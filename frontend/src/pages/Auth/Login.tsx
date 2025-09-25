@@ -34,6 +34,9 @@ function Login() {
   // If not authenticated, show login options
   return (
     <div className={styles.authcontainer}>
+         <div className={styles.imgcontainer}>
+        <img src={practiceimg} alt="Practice Solutions" />
+      </div>
       <div className={styles.form}>
         <h1>Login / Register</h1>
         <button onClick={() => {
@@ -42,9 +45,7 @@ function Login() {
       
       </div>
 
-      <div className={styles.imgcontainer}>
-        <img src={practiceimg} alt="Practice Solutions" />
-      </div>
+   
     </div>
   );
 }

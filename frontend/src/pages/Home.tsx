@@ -8,7 +8,7 @@ export default function Home() {
   const navigateToQuestion = () => navigation('/Questionares');
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <section className={`${styles.header}`}>
         <div className={`${styles.blur} ${styles['hero-blur']}`}></div>
         <div className={styles.heroContent}>
@@ -91,6 +91,6 @@ export default function Home() {
           Explore Questions
         </button>
       </section>
-    </div>
+    </main>
   );
 }

@@ -5,9 +5,13 @@ import App from "./App.tsx";
 import { Buffer } from "buffer";
 import { AuthProvider } from "react-oidc-context";
 
+const domain = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_VkxpvO3t3"
+//const domain = ""https://cognito-idp.us-east-1.amazonaws.com/us-east-1_tNpZ7Kn4W""
+//const clientId = "5vnnnbupq21711l42jtds0b2fr"
+const clientId ="1oodu8054l3ft60lf1r3cvbbc3"
 const cognitoAuthConfig = {
-  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_tNpZ7Kn4W",
-  client_id: "5vnnnbupq21711l42jtds0b2fr",
+  authority:domain ,
+  client_id: clientId,
   redirect_uri: "https://staging.d385k1fvsqio60.amplifyapp.com/Questionares",
   response_type: "code",
   scope: "email openid phone",

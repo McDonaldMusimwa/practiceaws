@@ -18,7 +18,7 @@ const { examcode } = useParams<{ examcode: string }>();
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await getQuestions(examcode, "1");
+        const res = await getQuestions(examcode || "", "1");
         if (res) {
           loadQuestions(res); // only load into store
         }
