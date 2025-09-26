@@ -12,6 +12,8 @@ function ExamSelectionBasePage() {
 
   const navigate = useNavigate();
   const { examcode } = useParams<{ examcode: string }>();
+
+
   const auth = useAuth();
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function ExamSelectionBasePage() {
   const examName = examNames[examcode || ""] || "";
 
   const examChoiceHandler = (section_module: string) => {
+  
     if (section_module === "1") {
       // Always allow section 1
       navigate(`${section_module}`);
@@ -53,7 +56,7 @@ function ExamSelectionBasePage() {
       }
     }
   };
-
+console.log("Sections=>", sections);
   return (
     <div className={styles.Selectionbase}>
       <h2>{examName}</h2>
@@ -61,8 +64,8 @@ function ExamSelectionBasePage() {
       {loading && <p>Loading sections...</p>}
       {error && <p className={styles.error}>{error}</p>}
 
-      <div className={styles.selectionSelection}>
-        {sections.map((sec) => (
+      <div className={styles.sectionSelection}>
+        {sections.sort().map((sec) => (
           <Card key={sec} onClick={() => examChoiceHandler(sec)}>
             Section {sec}
           </Card>

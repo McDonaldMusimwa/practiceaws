@@ -32,7 +32,7 @@ let examName ="";
     default:
       break;
   }
-console.log(examName)
+
 
     return (
   <div className={styles.base}>

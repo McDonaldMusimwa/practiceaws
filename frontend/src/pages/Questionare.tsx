@@ -12,13 +12,16 @@ function QuestionareBasePage() {
   //const location = useLocation();
   //const pathname: string = location.pathname.replace(/^\/Questionares\/.*/, "");
 const { examcode } = useParams<{ examcode: string }>();
+const path = window.location.pathname;
+const section_module = path.split('/')[3];
+
 
   const [tracker, setTracker] = useState(0);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await getQuestions(examcode || "", "1");
+        const res = await getQuestions(examcode || "", section_module || "1");
         if (res) {
           loadQuestions(res); // only load into store
         }
