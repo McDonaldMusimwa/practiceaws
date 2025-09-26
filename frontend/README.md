@@ -20,19 +20,31 @@ To give aspiring AWS-certified professionals a hands-on way to test and improve 
 ## 🚀 Features
 
 - ✅ View randomized AWS practice questions
+- ✅ Timed practice exams
+- ✅ Score calculation
 - ✅ Select and submit answers
 - ✅ See correct/incorrect feedback
-- ✅ Backend API built with AWS Lambda
+- ✅ Backend 1 API built with AWS Lambda
+- ✅ Backend 2 API custom script build in node
 - ✅ Data stored in DynamoDB
 - ✅ Deployed using AWS services (API Gateway, Lambda, DynamoDB, S3)
 
 ---
 
 ## 🏗️ Architecture Overview
+    
 
-    React (Frontend)  
+    |--> React (Frontend)  
+    |
+    |--> CloudFront (Distribution)
+    |
+    |--> Amplify (Deployment)
+    |
+    |--> S3 (Static Website Hosting)
     |
     |--> API Gateway (REST API)
+    |
+    |--> AWS Cognito (Authentication)
     |
     |--> AWS Lambda (Node.js)
     |
@@ -68,12 +80,10 @@ To give aspiring AWS-certified professionals a hands-on way to test and improve 
 
 ---
 
-📈 Future Enhancements
+## 📈 Future Enhancements
 
 📝 User progress tracking (with Cognito)
 
-🧪 Timed practice exams
-
 🌍 Internationalization support
 
-📊 Score calculation
+

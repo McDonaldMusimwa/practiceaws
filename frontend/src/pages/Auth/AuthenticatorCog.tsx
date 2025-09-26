@@ -1,4 +1,4 @@
-import {
+/*import {
   Authenticator as AuthenticatorX,
   ThemeProvider as AmplifyThemeProvider,
 } from "@aws-amplify/ui-react";
@@ -49,3 +49,4 @@ export const Authenticator: React.FC<PropsWithChildren> = ({ children }) => {
     </AmplifyThemeProvider>
   );
 };
+*/

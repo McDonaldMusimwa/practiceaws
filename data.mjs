@@ -1,4 +1,4 @@
-export const saaQuestions = [
+ const saaQuestions1 = [
   {
     question: "A company has developed public APIs hosted in Amazon EC2 instances behind an Elastic Load Balancer. The APIs will be used by clients from on-premises networks that require whitelisting IP addresses. What should the Solutions Architect do to meet this requirement?",
     answers: [
@@ -65,7 +65,7 @@ section:"1"
     section:"1"
   }
 ];
-export const cloudPractitionerQuestions = [ 
+const cloudPractitionerQuestions1 = [ 
   {
     question:
       "Which AWS service allows you to estimate the cost of your architecture before deployment?",
@@ -140,112 +140,256 @@ export const cloudPractitionerQuestions = [
       "AWS Cost Explorer provides visual tools to explore usage patterns and costs. It helps identify spending trends and forecast future AWS expenses.",
     domain: "Billing and Pricing",
     section:"1"
-  }
-];
-export const cloudPractitionerQuestions2 = [
+  },
   {
-    "question": "Which of the following is a managed DNS service provided by AWS?",
+    "question": "Which AWS service is primarily used to prevent unauthorized access to your Virtual Private Cloud (VPC) instances by acting as a firewall at the subnet level?",
     "answers": [
+      { "selection": "A", "answer": "AWS Web Application Firewall (WAF)." },
+      { "selection": "B", "answer": "Network Access Control List (NACL)." },
+      { "selection": "C", "answer": "AWS Identity and Access Management (IAM)." },
+      { "selection": "D", "answer": "Amazon GuardDuty." }
+    ],
+    "correctanswer": "B",
+    "explantion": "A **Network Access Control List (NACL)** is a stateless firewall that controls traffic in and out of subnets within a VPC, providing an essential layer of security.",
+    "domain": "Security",
+    "section": "1"
+  },
+  {
+    "question": "A company requires its data to remain available even if an entire AWS Region fails. Which pillar of the AWS Well-Architected Framework is this requirement most aligned with?",
+    "answers": [
+      { "selection": "A", "answer": "Performance Efficiency." },
+      { "selection": "B", "answer": "Cost Optimization." },
+      { "selection": "C", "answer": "Operational Excellence." },
+      { "selection": "D", "answer": "Reliability." }
+    ],
+    "correctanswer": "D",
+    "explantion": "The **Reliability** pillar focuses on the ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as a Region failure (Multi-Region architecture).",
+    "domain": "Resilient Architecture",
+    "section": "2"
+  },
+  {
+    "question": "Which security feature allows an application to use temporary, limited-privilege credentials instead of long-term credentials when accessing AWS services?",
+    "answers": [
+      { "selection": "A", "answer": "IAM Users." },
+      { "selection": "B", "answer": "IAM Roles." },
+      { "selection": "C", "answer": "Multi-Factor Authentication (MFA)." },
+      { "selection": "D", "answer": "IAM Groups." }
+    ],
+    "correctanswer": "B",
+    "explantion": "**IAM Roles** are used to delegate permissions to users, applications, or services that require access to AWS resources. They provide temporary security credentials with defined permissions, which is a security best practice.",
+    "domain": "Security",
+    "section": "1"
+  },
+  {
+    "question": "What is the AWS recommended best practice for achieving high availability and fault tolerance for an application running on Amazon EC2 instances?",
+    "answers": [
+      { "selection": "A", "answer": "Deploying all EC2 instances in a single Availability Zone (AZ)." },
+      { "selection": "B", "answer": "Deploying EC2 instances across multiple Availability Zones (AZs) using an Auto Scaling Group and Load Balancer." },
+      { "selection": "C", "answer": "Using EC2 Dedicated Hosts to ensure resource isolation." },
+      { "selection": "D", "answer": "Deploying all resources in a single AWS Region." }
+    ],
+    "correctanswer": "B",
+    "explantion": "Spreading resources like EC2 instances across **multiple Availability Zones (AZs)** and using an **Auto Scaling Group** with a **Load Balancer** is the fundamental pattern for fault tolerance and high availability in AWS.",
+    "domain": "Resilient Architecture",
+    "section": "2"
+  },
+  {
+    "question": "A customer is concerned about protecting their web application from common web exploits like SQL injection and cross-site scripting. Which AWS service should they use?",
+    "answers": [
+      { "selection": "A", "answer": "Amazon Inspector." },
+      { "selection": "B", "answer": "AWS Shield Standard." },
+      { "selection": "C", "answer": "AWS Web Application Firewall (WAF)." },
+      { "selection": "D", "answer": "AWS Artifact." }
+    ],
+    "correctanswer": "C",
+    "explantion": "**AWS WAF** is a web application firewall that helps protect web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources.",
+    "domain": "Security",
+    "section": "1"
+  },
+  {
+    "question": "A development team needs a database solution that automatically replicates data across multiple Availability Zones (AZs) to ensure data redundancy without requiring manual configuration. Which feature/service achieves this?",
+    "answers": [
+      { "selection": "A", "answer": "Amazon RDS Read Replicas." },
+      { "selection": "B", "answer": "Amazon RDS Multi-AZ deployment." },
+      { "selection": "C", "answer": "Amazon EBS Snapshots." },
+      { "selection": "D", "answer": "Amazon ElastiCache." }
+    ],
+    "correctanswer": "B",
+    "explantion": "**Amazon RDS Multi-AZ** deployment automatically provisions and manages a synchronous standby replica in a different Availability Zone for high availability and redundancy. This is the cornerstone of managed database resilience.",
+    "domain": "Resilient Architecture",
+    "section": "2"
+  },
+  {
+    "question": "What is the primary benefit of using Amazon S3 for storing backups and archives instead of an on-premise tape library?",
+    "answers": [
+      { "selection": "A", "answer": "Encryption is automatically disabled." },
+      { "selection": "B", "answer": "The data is automatically protected by the IAM service." },
+      { "selection": "C", "answer": "It provides durability and redundancy by storing data across multiple devices in multiple Availability Zones." },
+      { "selection": "D", "answer": "S3 is a relational database service." }
+    ],
+    "correctanswer": "C",
+    "explantion": "Amazon S3 is designed for **99.999999999% (11 nines) durability** by redundantly storing data across multiple devices in a minimum of three Availability Zones, fulfilling a core requirement for resilient architecture and reliable backup.",
+    "domain": "Resilient Architecture",
+    "section": "2"
+  },
+  {
+    "question": "Under the AWS Shared Responsibility Model, which security task is the customer *always* responsible for?",
+    "answers": [
+      { "selection": "A", "answer": "Physical security of the data centers." },
+      { "selection": "B", "answer": "Maintaining the underlying EC2 hypervisor." },
+      { "selection": "C", "answer": "Configuring security groups and network access control lists (NACLs)." },
+      { "selection": "D", "answer": "Patching the operating system for AWS managed services like RDS." }
+    ],
+    "correctanswer": "C",
+    "explantion": "The customer is always responsible for **'Security *in* the Cloud,'** which includes configuration tasks like managing **Security Groups** and **NACLs**, while AWS handles 'Security *of* the Cloud' (A, B, and D).",
+    "domain": "Security",
+    "section": "1"
+  },
+  {
+    "question": "Which AWS service provides an organization with a comprehensive view of its security state and continuous monitoring for vulnerabilities and unwanted network exposure across its EC2 instances?",
+    "answers": [
+      { "selection": "A", "answer": "AWS Config." },
+      { "selection": "B", "answer": "AWS Certificate Manager (ACM)." },
+      { "selection": "C", "answer": "Amazon Inspector." },
+      { "selection": "D", "answer": "AWS CloudFormation." }
+    ],
+    "correctanswer": "C",
+    "explantion": "**Amazon Inspector** is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS by continuously scanning for software vulnerabilities and unintended network exposure.",
+    "domain": "Security",
+    "section": "1"
+  },
+  {
+    "question": "What architectural design principle involves scaling an application by adding more instances rather than increasing the size of a single instance?",
+    "answers": [
+      { "selection": "A", "answer": "Vertical Scaling." },
+      { "selection": "B", "answer": "Monolithic Design." },
+      { "selection": "C", "answer": "Horizontal Scaling." },
+      { "selection": "D", "answer": "Serverless Computing." }
+    ],
+    "correctanswer": "C",
+    "explantion": "**Horizontal Scaling** (scaling out) involves adding more resources (e.g., EC2 instances) to distribute load. This is the preferred method for building highly scalable and resilient applications on AWS, as it eliminates single points of failure.",
+    "domain": "Resilient Architecture",
+    "section": "2"
+  }
+
+];
+const cloudPractitionerQuestions2 = [
+  {
+    question: "Which of the following is a managed DNS service provided by AWS?",
+    answers: [
       { "selection": "A", "answer": "Amazon CloudFront" },
       { "selection": "B", "answer": "Amazon VPC" },
       { "selection": "C", "answer": "Amazon Route 53" },
       { "selection": "D", "answer": "AWS Direct Connect" }
     ],
-    "correctanswer": "C",
-    "explanation": "Amazon Route 53 is a highly available and scalable cloud DNS web service.",
-    "domain": "Networking",
-    "section": "2"
+    correctanswer: "C",
+    explanation:` Amazon Route 53 is Amazon Web Services' highly available and scalable Domain Name System (DNS) web service.
+
+In simple terms, Route 53 is the service that translates human-readable website names (like example.com) into the numerical IP addresses (like 192.0.2.1) that computers use to connect to each other. It is the internet's "phone book."
+
+The name "Route 53" comes from the fact that DNS servers traditionally use port 53 to handle requests, and the service's job is to route users to their desired applications.
+
+Core Functions
+Route 53 serves three main functions:
+
+Domain Registration: You can use Route 53 to register new domain names (e.g., mydomain.net).
+
+DNS Resolution (Traffic Routing): It acts as an authoritative DNS service, storing the definitive records for your domain and answering queries from users worldwide.
+
+Health Checking and Failover: It continuously monitors the health of your application endpoints and can automatically re-route traffic away from unhealthy resources. `,
+    domain: "Networking",
+    section: "2"
   },
   {
-    "question": "Which AWS service is designed to help you analyze and manage your costs?",
-    "answers": [
+    question: "Which AWS service is designed to help you analyze and manage your costs?",
+    answers: [
       { "selection": "A", "answer": "AWS Cost Explorer" },
       { "selection": "B", "answer": "AWS Budgets" },
       { "selection": "C", "answer": "AWS Trusted Advisor" },
       { "selection": "D", "answer": "Amazon Inspector" }
     ],
-    "correctanswer": "A",
-    "explanation": "AWS Cost Explorer is a tool that lets you visualize and analyze your costs and usage.",
-    "domain": "Billing and Pricing",
-    "section": "2"
+    correctanswer: "A",
+    explanation: "AWS Cost Explorer is a tool that lets you visualize and analyze your costs and usage.",
+    domain: "Billing and Pricing",
+    section: "2"
   },
   {
-    "question": "Which pricing model allows you to trade flexibility for a lower price in exchange for a one- or three-year commitment?",
-    "answers": [
+    question: "Which pricing model allows you to trade flexibility for a lower price in exchange for a one- or three-year commitment?",
+    answers: [
       { "selection": "A", "answer": "On-Demand Instances" },
       { "selection": "B", "answer": "Reserved Instances" },
       { "selection": "C", "answer": "Spot Instances" },
       { "selection": "D", "answer": "Dedicated Hosts" }
     ],
-    "correctanswer": "B",
-    "explanation": "Reserved Instances offer a significant discount (up to 75%) over On-Demand prices by committing to a one- or three-year term.",
-    "domain": "Billing and Pricing",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "Reserved Instances offer a significant discount (up to 75%) over On-Demand prices by committing to a one- or three-year term.",
+    domain: "Billing and Pricing",
+    section: "2"
   },
   {
-    "question": "Which AWS service is used to distribute traffic across multiple EC2 instances?",
-    "answers": [
+    question: "Which AWS service is used to distribute traffic across multiple EC2 instances?",
+    answers: [
       { "selection": "A", "answer": "Amazon S3" },
       { "selection": "B", "answer": "Amazon Elastic Load Balancing (ELB)" },
       { "selection": "C", "answer": "Amazon RDS" },
       { "selection": "D", "answer": "Amazon VPC" }
     ],
-    "correctanswer": "B",
-    "explanation": "Elastic Load Balancing (ELB) automatically distributes incoming application traffic across multiple targets, such as EC2 instances.",
-    "domain": "Cloud Concepts",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "Elastic Load Balancing (ELB) automatically distributes incoming application traffic across multiple targets, such as EC2 instances.",
+    domain: "Cloud Concepts",
+    section: "2"
   },
   {
-    "question": "What is the primary benefit of deploying an application across multiple Availability Zones?",
-    "answers": [
+    question: "What is the primary benefit of deploying an application across multiple Availability Zones?",
+    answers: [
       { "selection": "A", "answer": "Elasticity" },
       { "selection": "B", "answer": "High availability" },
       { "selection": "C", "selection": "Cost optimization" },
       { "selection": "D", "answer": "Agility" }
     ],
-    "correctanswer": "B",
-    "explanation": "Availability Zones are isolated locations within an AWS Region. Deploying resources across multiple AZs ensures high availability and fault tolerance.",
-    "domain": "Cloud Concepts",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "Availability Zones are isolated locations within an AWS Region. Deploying resources across multiple AZs ensures high availability and fault tolerance.",
+    domain: "Cloud Concepts",
+    section: "2"
   },
   {
-    "question": "Which AWS service allows you to run containers without managing servers or clusters?",
-    "answers": [
+    question: "Which AWS service allows you to run containers without managing servers or clusters?",
+    answers: [
       { "selection": "A", "answer": "Amazon ECS" },
       { "selection": "B", "answer": "Amazon EKS" },
       { "selection": "C", "answer": "AWS Fargate" },
       { "selection": "D", "answer": "Amazon EC2" }
     ],
-    "correctanswer": "C",
-    "explanation": "AWS Fargate is a serverless compute engine for containers that works with both Amazon ECS and Amazon EKS, eliminating the need to manage servers.",
-    "domain": "Containers",
-    "section": "2"
+    correctanswer: "C",
+    explanation: "AWS Fargate is a serverless compute engine for containers that works with both Amazon ECS and Amazon EKS, eliminating the need to manage servers.",
+    domain: "Containers",
+    section: "2"
   },
   {
-    "question": "Which service is a highly-scalable object storage service?",
-    "answers": [
+    question: "Which service is a highly-scalable object storage service?",
+    answers: [
       { "selection": "A", "answer": "Amazon EBS" },
       { "selection": "B", "answer": "Amazon S3" },
       { "selection": "C", "answer": "Amazon EFS" },
       { "selection": "D", "answer": "Amazon RDS" }
     ],
-    "correctanswer": "B",
-    "explanation": "Amazon S3 (Simple Storage Service) is an object storage service offering industry-leading scalability, data availability, security, and performance.",
-    "domain": "Storage",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "Amazon S3 (Simple Storage Service) is an object storage service offering industry-leading scalability, data availability, security, and performance.",
+    domain: "Storage",
+    section: "2"
   },
   {
-    "question": "Which AWS service is a relational database service that automatically handles patching and backups?",
-    "answers": [
+    question: "Which AWS service is a relational database service that automatically handles patching and backups?",
+    answers: [
       { "selection": "A", "answer": "Amazon DynamoDB" },
       { "selection": "B", "answer": "Amazon Redshift" },
       { "selection": "C", "answer": "Amazon RDS" },
       { "selection": "D", "answer": "Amazon Aurora" }
     ],
-    "correctanswer": "C",
-    "explanation": "Amazon Relational Database Service (RDS) simplifies the setup, operation, and scaling of a relational database, providing automated backups and patching.",
-    "domain": "Databases",
-    "section": "2"
+    correctanswer: "C",
+    explanation: "Amazon Relational Database Service (RDS) simplifies the setup, operation, and scaling of a relational database, providing automated backups and patching.",
+    domain: "Databases",
+    section: "2"
   },
   {
     "question": "What is the security group's default behavior for inbound traffic?",
@@ -261,109 +405,280 @@ export const cloudPractitionerQuestions2 = [
     "section": "2"
   },
   {
-    "question": "Which service helps you to securely store and retrieve secrets like database credentials and API keys?",
-    "answers": [
+    question: "Which service helps you to securely store and retrieve secrets like database credentials and API keys?",
+    answers: [
       { "selection": "A", "answer": "AWS KMS" },
       { "selection": "B", "answer": "AWS WAF" },
       { "selection": "C", "answer": "AWS Secrets Manager" },
       { "selection": "D", "answer": "Amazon Cognito" }
     ],
-    "correctanswer": "C",
-    "explanation": "AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources.",
-    "domain": "Security",
-    "section": "2"
+    correctanswer: "C",
+    explanation: "AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources.",
+    domain: "Security",
+    section: "2"
   },
   {
-    "question": "Which of the following is an example of an AWS managed service?",
-    "answers": [
+    question: "Which of the following is an example of an AWS managed service?",
+    answers: [
       { "selection": "A", "answer": "EC2 instance running custom software" },
       { "selection": "B", "answer": "An S3 bucket" },
       { "selection": "C", "answer": "A self-managed database on an EC2 instance" },
       { "selection": "D", "answer": "A container running on a third-party service" }
     ],
-    "correctanswer": "B",
-    "explanation": "An S3 bucket is a fully-managed service where AWS handles the underlying infrastructure, security, and maintenance.",
-    "domain": "Cloud Concepts",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "An S3 bucket is a fully-managed service where AWS handles the underlying infrastructure, security, and maintenance.",
+    domain: "Cloud Concepts",
+    section: "2"
   },
   {
-    "question": "Which AWS service can be used to set up a private, dedicated network connection from your data center to AWS?",
-    "answers": [
+    question: "Which AWS service can be used to set up a private, dedicated network connection from your data center to AWS?",
+    answers: [
       { "selection": "A", "answer": "Amazon VPC" },
       { "selection": "B", "answer": "AWS VPN" },
       { "selection": "C", "answer": "AWS Direct Connect" },
       { "selection": "D", "answer": "Amazon Internet Gateway" }
     ],
-    "correctanswer": "C",
-    "explanation": "AWS Direct Connect provides a dedicated private network connection from your on-premises infrastructure to AWS.",
-    "domain": "Networking",
-    "section": "2"
+    correctanswer: "C",
+    explanation: "AWS Direct Connect provides a dedicated private network connection from your on-premises infrastructure to AWS.",
+    domain: "Networking",
+    section: "2"
   },
   {
-    "question": "What is the primary purpose of AWS CloudFormation?",
-    "answers": [
+    question: "What is the primary purpose of AWS CloudFormation?",
+    answers: [
       { "selection": "A", "answer": "To monitor and alert on resource metrics" },
       { "selection": "B", "answer": "To automate infrastructure provisioning" },
       { "selection": "C", "answer": "To manage user access" },
       { "selection": "D", "answer": "To protect against DDoS attacks" }
     ],
-    "correctanswer": "B",
-    "explanation": "AWS CloudFormation helps you model and provision your AWS and third-party application resources using templates.",
-    "domain": "Automation",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "AWS CloudFormation helps you model and provision your AWS and third-party application resources using templates.",
+    domain: "Automation",
+    section: "2"
   },
   {
-    "question": "Which service allows you to migrate databases to AWS with minimal downtime?",
-    "answers": [
+    question: "Which service allows you to migrate databases to AWS with minimal downtime?",
+    answers: [
       { "selection": "A", "answer": "AWS Snowball" },
       { "selection": "B", "answer": "AWS Database Migration Service (DMS)" },
       { "selection": "C", "answer": "AWS DataSync" },
       { "selection": "D", "answer": "AWS Transfer Family" }
     ],
-    "correctanswer": "B",
-    "explanation": "AWS DMS helps you migrate databases to AWS quickly and securely, with minimal downtime to the source database.",
-    "domain": "Migration",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "AWS DMS helps you migrate databases to AWS quickly and securely, with minimal downtime to the source database.",
+    domain: "Migration",
+    section: "2"
   },
   {
-    "question": "Which AWS service is a global content delivery network (CDN)?",
-    "answers": [
+    question: "Which AWS service is a global content delivery network (CDN)?",
+    answers: [
       { "selection": "A", "answer": "Amazon S3" },
       { "selection": "B", "answer": "Amazon CloudFront" },
       { "selection": "C", "answer": "Amazon Route 53" },
       { "selection": "D", "answer": "Amazon VPC" }
     ],
-    "correctanswer": "B",
-    "explanation": "Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency.",
-    "domain": "Networking",
-    "section": "2"
+    correctanswer: "B",
+    explanation: "Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency.",
+    domain: "Networking",
+    section: "2"
   },
   {
-    "question": "Which of the following is a cost-effective choice for a workload that can be interrupted and has no specific start or end time?",
-    "answers": [
+    question: "Which of the following is a cost-effective choice for a workload that can be interrupted and has no specific start or end time?",
+    answers: [
       { "selection": "A", "answer": "Reserved Instances" },
       { "selection": "B", "answer": "On-Demand Instances" },
       { "selection": "C", "answer": "Spot Instances" },
       { "selection": "D", "answer": "Dedicated Hosts" }
     ],
-    "correctanswer": "C",
-    "explanation": "Spot Instances let you take advantage of unused EC2 capacity in the AWS cloud and are a cost-effective option for flexible workloads.",
-    "domain": "Billing and Pricing",
-    "section": "2"
+    correctanswer: "C",
+    explanation: "Spot Instances let you take advantage of unused EC2 capacity in the AWS cloud and are a cost-effective option for flexible workloads.",
+    domain: "Billing and Pricing",
+    section: "2"
   },
   {
-    "question": "Which AWS service can be used to process large datasets using a framework like Hadoop?",
-    "answers": [
+    question: "Which AWS service can be used to process large datasets using a framework like Hadoop?",
+    answers: [
       { "selection": "A", "answer": "Amazon RDS" },
       { "selection": "B", "answer": "Amazon DynamoDB" },
       { "selection": "C", "answer": "Amazon EMR" },
       { "selection": "D", "answer": "Amazon Redshift" }
     ],
-    "correctanswer": "C",
-    "explanation": "Amazon EMR (Elastic MapReduce) is a managed cluster platform that simplifies running big data frameworks like Apache Hadoop and Spark.",
-    "domain": "Analytics",
-    "section": "2"
+    correctanswer: "C",
+    explanation: "Amazon EMR (Elastic MapReduce) is a managed cluster platform that simplifies running big data frameworks like Apache Hadoop and Spark.",
+    domain: "Analytics",
+    section: "2"
   },
+  {
+    question: "What is the term for a logical grouping of AWS resources in a private network?",
+    answers: [
+      { "selection": "A", "answer": "Availability Zone" },
+      { "selection": "B", "answer": "Region" },
+      { "selection": "C", "answer": "Virtual Private Cloud (VPC)" },
+      { "selection": "D", "answer": "Subnet" }
+    ],
+    correctanswer: "C",
+    explanation: "A Virtual Private Cloud (VPC) is a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.",
+    domain: "Networking",
+    section: "2"
+  },
+  {
+    question: "Which AWS service is a data warehouse that can handle petabytes of data?",
+    answers: [
+      { "selection": "A", "answer": "Amazon RDS" },
+      { "selection": "B", "answer": "Amazon Redshift" },
+      { "selection": "C", "answer": "Amazon DynamoDB" },
+      { "selection": "D", "answer": "Amazon Aurora" }
+    ],
+    correctanswer: "B",
+    explanation: "Amazon Redshift is a fully managed, petabyte-scale data warehouse service.",
+    domain: "Databases",
+    section: "2"
+  },
+  {
+    question: "Which AWS service is used to create and manage keys and encryption?",
+    answers: [
+      { "selection": "A", "answer": "AWS IAM" },
+      { "selection": "B", "answer": "AWS KMS" },
+      { "selection": "C", "answer": "AWS WAF" },
+      { "selection": "D", "answer": "AWS Shield" }
+    ],
+    correctanswer: "B",
+    explanation: "AWS Key Management Service (KMS) lets you create and manage cryptographic keys and control their use across a wide range of AWS services.",
+    domain: "Security",
+    section: "2"
+  },
+  {
+    question: "Which of the following is a managed NoSQL database service?",
+    answers: [
+      { "selection": "A", "answer": "Amazon Aurora" },
+      { "selection": "B", "answer": "Amazon RDS" },
+      { "selection": "C", "answer": "Amazon DynamoDB" },
+      { "selection": "D", "answer": "Amazon Redshift" }
+    ],
+    correctanswer: "C",
+    explanation: "Amazon DynamoDB is a fully managed NoSQL key-value and document database service.",
+    domain: "Databases",
+    section: "2"
+  },
+  {
+    question: "What is the primary function of AWS Trusted Advisor?",
+    answers: [
+      { "selection": "A", "answer": "To automate infrastructure deployment" },
+      { "selection": "B", "answer": "To provide real-time monitoring of resources" },
+      { "selection": "C", "answer": "To provide recommendations on cost optimization, performance, and security" },
+      { "selection": "D", "answer": "To protect against DDoS attacks" }
+    ],
+    correctanswer: "C",
+    explanation: "AWS Trusted Advisor provides recommendations that help you follow AWS best practices for cost optimization, security, performance, fault tolerance, and service limits.",
+    domain: "Operations",
+    section: "2"
+  },
+  {
+    question: "Which AWS service allows you to automatically scale your EC2 instances up and down?",
+    answers: [
+      { "selection": "A", "answer": "Amazon CloudWatch" },
+      { "selection": "B", "answer": "AWS Auto Scaling" },
+      { "selection": "C", "answer": "Amazon SQS" },
+      { "selection": "D", "answer": "Amazon SNS" }
+    ],
+    correctanswer: "B",
+    explanation: "AWS Auto Scaling monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost.",
+    domain: "Cloud Concepts",
+    section: "2"
+  },
+  {
+    question: "Which AWS service is a serverless compute service that lets you run code without provisioning or managing servers?",
+    answers: [
+      { "selection": "A", "answer": "Amazon EC2" },
+      { "selection": "B", "answer": "AWS Lambda" },
+      { "selection": "C", "answer": "AWS Fargate" },
+      { "selection": "D", "answer": "Amazon Lightsail" }
+    ],
+    correctanswer: "B",
+    explanation: "AWS Lambda is a serverless compute service that runs code in response to events and automatically manages the underlying compute resources.",
+    domain: "Compute",
+    section: "2"
+  },
+  {
+    question: "Which AWS service can be used to set up a private, dedicated network connection from your data center to AWS?",
+    answers: [
+      { "selection": "A", "answer": "Amazon VPC" },
+      { "selection": "B", "answer": "AWS VPN" },
+      { "selection": "C", "answer": "AWS Direct Connect" },
+      { "selection": "D", "answer": "Amazon Internet Gateway" }
+    ],
+    correctanswer: "C",
+    explanation: "AWS Direct Connect provides a dedicated private network connection from your on-premises infrastructure to AWS.",
+    domain: "Networking",
+    section: "2"
+  },
+  {
+    question: "What is the primary purpose of AWS CloudFormation?",
+    answers: [
+      { "selection": "A", "answer": "To monitor and alert on resource metrics" },
+      { "selection": "B", "answer": "To automate infrastructure provisioning" },
+      { "selection": "C", "answer": "To manage user access" },
+      { "selection": "D", "answer": "To protect against DDoS attacks" }
+    ],
+    correctanswer: "B",
+    explanation: "AWS CloudFormation helps you model and provision your AWS and third-party application resources using templates.",
+    domain: "Automation",
+    section: "2"
+  },
+  {
+    question: "Which service allows you to migrate databases to AWS with minimal downtime?",
+    answers: [
+      { "selection": "A", "answer": "AWS Snowball" },
+      { "selection": "B", "answer": "AWS Database Migration Service (DMS)" },
+      { "selection": "C", "answer": "AWS DataSync" },
+      { "selection": "D", "answer": "AWS Transfer Family" }
+    ],
+    correctanswer: "B",
+    explanation: "AWS DMS helps you migrate databases to AWS quickly and securely, with minimal downtime to the source database.",
+    domain: "Migration",
+    section: "2"
+  },
+  {
+    question: "Which AWS service is a global content delivery network (CDN)?",
+    answers: [
+      { "selection": "A", "answer": "Amazon S3" },
+      { "selection": "B", "answer": "Amazon CloudFront" },
+      { "selection": "C", "answer": "Amazon Route 53" },
+      { "selection": "D", "answer": "Amazon VPC" }
+    ],
+    correctanswer: "B",
+    explanation: "Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency.",
+    domain: "Networking",
+    section: "2"
+  },
+  {
+    question: "Which of the following is a cost-effective choice for a workload that can be interrupted and has no specific start or end time?",
+    answers: [
+      { "selection": "A", "answer": "Reserved Instances" },
+      { "selection": "B", "answer": "On-Demand Instances" },
+      { "selection": "C", "answer": "Spot Instances" },
+      { "selection": "D", "answer": "Dedicated Hosts" }
+    ],
+    correctanswer: "C",
+    explanation: "Spot Instances let you take advantage of unused EC2 capacity in the AWS cloud and are a cost-effective option for flexible workloads.",
+    domain: "Billing and Pricing",
+    section: "2"
+  },
+  {
+    question: "Which AWS service can be used to process large datasets using a framework like Hadoop?",
+    answers: [
+      { "selection": "A", "answer": "Amazon RDS" },
+      { "selection": "B", "answer": "Amazon DynamoDB" },
+      { "selection": "C", "answer": "Amazon EMR" },
+      { "selection": "D", "answer": "Amazon Redshift" }
+    ],
+    correctanswer: "C",
+    explanation: "Amazon EMR (Elastic MapReduce) is a managed cluster platform that simplifies running big data frameworks like Apache Hadoop and Spark.",
+    domain: "Analytics",
+    section: "2"
+  }]
+
+const cloudPractitionerQuestions3= [ 
   {
     "question": "What is the term for a logical grouping of AWS resources in a private network?",
     "answers": [
@@ -753,112 +1068,9 @@ export const cloudPractitionerQuestions2 = [
     "explanation": "Amazon DynamoDB is a fully managed NoSQL key-value and document database service.",
     "domain": "Databases",
     "section": "2"
-  },
-  {
-    "question": "What is the primary function of AWS Trusted Advisor?",
-    "answers": [
-      { "selection": "A", "answer": "To automate infrastructure deployment" },
-      { "selection": "B", "answer": "To provide real-time monitoring of resources" },
-      { "selection": "C", "answer": "To provide recommendations on cost optimization, performance, and security" },
-      { "selection": "D", "answer": "To protect against DDoS attacks" }
-    ],
-    "correctanswer": "C",
-    "explanation": "AWS Trusted Advisor provides recommendations that help you follow AWS best practices for cost optimization, security, performance, fault tolerance, and service limits.",
-    "domain": "Operations",
-    "section": "2"
-  },
-  {
-    "question": "Which AWS service allows you to automatically scale your EC2 instances up and down?",
-    "answers": [
-      { "selection": "A", "answer": "Amazon CloudWatch" },
-      { "selection": "B", "answer": "AWS Auto Scaling" },
-      { "selection": "C", "answer": "Amazon SQS" },
-      { "selection": "D", "answer": "Amazon SNS" }
-    ],
-    "correctanswer": "B",
-    "explanation": "AWS Auto Scaling monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost.",
-    "domain": "Cloud Concepts",
-    "section": "2"
-  },
-  {
-    "question": "Which AWS service is a serverless compute service that lets you run code without provisioning or managing servers?",
-    "answers": [
-      { "selection": "A", "answer": "Amazon EC2" },
-      { "selection": "B", "answer": "AWS Lambda" },
-      { "selection": "C", "answer": "AWS Fargate" },
-      { "selection": "D", "answer": "Amazon Lightsail" }
-    ],
-    "correctanswer": "B",
-    "explanation": "AWS Lambda is a serverless compute service that runs code in response to events and automatically manages the underlying compute resources.",
-    "domain": "Compute",
-    "section": "2"
-  },
-  {
-    "question": "Which AWS service can be used to set up a private, dedicated network connection from your data center to AWS?",
-    "answers": [
-      { "selection": "A", "answer": "Amazon VPC" },
-      { "selection": "B", "answer": "AWS VPN" },
-      { "selection": "C", "answer": "AWS Direct Connect" },
-      { "selection": "D", "answer": "Amazon Internet Gateway" }
-    ],
-    "correctanswer": "C",
-    "explanation": "AWS Direct Connect provides a dedicated private network connection from your on-premises infrastructure to AWS.",
-    "domain": "Networking",
-    "section": "2"
-  },
-  {
-    "question": "What is the primary purpose of AWS CloudFormation?",
-    "answers": [
-      { "selection": "A", "answer": "To monitor and alert on resource metrics" },
-      { "selection": "B", "answer": "To automate infrastructure provisioning" },
-      { "selection": "C", "answer": "To manage user access" },
-      { "selection": "D", "answer": "To protect against DDoS attacks" }
-    ],
-    "correctanswer": "B",
-    "explanation": "AWS CloudFormation helps you model and provision your AWS and third-party application resources using templates.",
-    "domain": "Automation",
-    "section": "2"
-  },
-  {
-    "question": "Which service allows you to migrate databases to AWS with minimal downtime?",
-    "answers": [
-      { "selection": "A", "answer": "AWS Snowball" },
-      { "selection": "B", "answer": "AWS Database Migration Service (DMS)" },
-      { "selection": "C", "answer": "AWS DataSync" },
-      { "selection": "D", "answer": "AWS Transfer Family" }
-    ],
-    "correctanswer": "B",
-    "explanation": "AWS DMS helps you migrate databases to AWS quickly and securely, with minimal downtime to the source database.",
-    "domain": "Migration",
-    "section": "2"
-  },
-  {
-    "question": "Which AWS service is a global content delivery network (CDN)?",
-    "answers": [
-      { "selection": "A", "answer": "Amazon S3" },
-      { "selection": "B", "answer": "Amazon CloudFront" },
-      { "selection": "C", "answer": "Amazon Route 53" },
-      { "selection": "D", "answer": "Amazon VPC" }
-    ],
-    "correctanswer": "B",
-    "explanation": "Amazon CloudFront is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency.",
-    "domain": "Networking",
-    "section": "2"
-  },
-  {
-    "question": "Which of the following is a cost-effective choice for a workload that can be interrupted and has no specific start or end time?",
-    "answers": [
-      { "selection": "A", "answer": "Reserved Instances" },
-      { "selection": "B", "answer": "On-Demand Instances" },
-      { "selection": "C", "answer": "Spot Instances" },
-      { "selection": "D", "answer": "Dedicated Hosts" }
-    ],
-    "correctanswer": "C",
-    "explanation": "Spot Instances let you take advantage of unused EC2 capacity in the AWS cloud and are a cost-effective option for flexible workloads.",
-    "domain": "Billing and Pricing",
-    "section": "2"
-  },
-  {
+  }]
+const cloudPractitionerQuestions4= [ 
+      {
     "question": "Which AWS service can be used to process large datasets using a framework like Hadoop?",
     "answers": [
       { "selection": "A", "answer": "Amazon RDS" },
@@ -869,58 +1081,6 @@ export const cloudPractitionerQuestions2 = [
     "correctanswer": "C",
     "explanation": "Amazon EMR (Elastic MapReduce) is a managed cluster platform that simplifies running big data frameworks like Apache Hadoop and Spark.",
     "domain": "Analytics",
-    "section": "2"
-  },
-  {
-    "question": "What is the term for a logical grouping of AWS resources in a private network?",
-    "answers": [
-      { "selection": "A", "answer": "Availability Zone" },
-      { "selection": "B", "answer": "Region" },
-      { "selection": "C", "answer": "Virtual Private Cloud (VPC)" },
-      { "selection": "D", "answer": "Subnet" }
-    ],
-    "correctanswer": "C",
-    "explanation": "A Virtual Private Cloud (VPC) is a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.",
-    "domain": "Networking",
-    "section": "2"
-  },
-  {
-    "question": "Which AWS service is a data warehouse that can handle petabytes of data?",
-    "answers": [
-      { "selection": "A", "answer": "Amazon RDS" },
-      { "selection": "B", "answer": "Amazon Redshift" },
-      { "selection": "C", "answer": "Amazon DynamoDB" },
-      { "selection": "D", "answer": "Amazon Aurora" }
-    ],
-    "correctanswer": "B",
-    "explanation": "Amazon Redshift is a fully managed, petabyte-scale data warehouse service.",
-    "domain": "Databases",
-    "section": "2"
-  },
-  {
-    "question": "Which AWS service is used to create and manage keys and encryption?",
-    "answers": [
-      { "selection": "A", "answer": "AWS IAM" },
-      { "selection": "B", "answer": "AWS KMS" },
-      { "selection": "C", "answer": "AWS WAF" },
-      { "selection": "D", "answer": "AWS Shield" }
-    ],
-    "correctanswer": "B",
-    "explanation": "AWS Key Management Service (KMS) lets you create and manage cryptographic keys and control their use across a wide range of AWS services.",
-    "domain": "Security",
-    "section": "2"
-  },
-  {
-    "question": "Which of the following is a managed NoSQL database service?",
-    "answers": [
-      { "selection": "A", "answer": "Amazon Aurora" },
-      { "selection": "B", "answer": "Amazon RDS" },
-      { "selection": "C", "answer": "Amazon DynamoDB" },
-      { "selection": "D", "answer": "Amazon Redshift" }
-    ],
-    "correctanswer": "C",
-    "explanation": "Amazon DynamoDB is a fully managed NoSQL key-value and document database service.",
-    "domain": "Databases",
     "section": "2"
   },
   {
@@ -1301,7 +1461,7 @@ export const cloudPractitionerQuestions2 = [
     "section": "2"
   }
 ];
-export const aiPractitionerQuestions = [
+const aiPractitionerQuestions1 = [
   {
     question:
       "Which AWS service is primarily used for building, training, and deploying machine learning models?",
@@ -1447,7 +1607,7 @@ export const aiPractitionerQuestions = [
     domain: "Personalization",section:"1"
   }
 ];
-export const saurenaQuestions = [
+const saurenaQuestions = [
   {
     question: "A company has developed public APIs hosted in Amazon EC2 instances behind an Elastic Load Balancer. The APIs will be used by clients from on-premises networks that require whitelisting IP addresses. What should the Solutions Architect do to meet this requirement?",
     answers: [
@@ -2412,7 +2572,7 @@ export const saurenaQuestions = [
   }
 ];
 
-export const saaQuestionsSection2 = [
+const saaQuestionsSection2 = [
   {
     question: "A company needs to migrate their on-premise Oracle database to AWS with minimal application changes and high availability. Which service should you recommend?",
     answers: [
@@ -3442,8 +3602,7 @@ export const saaQuestionsSection2 = [
   }
   // 65 total
 ];
-
-export const aiPractitionerQuestions2 = [
+ const aiPractitionerQuestions2 = [
   {
     "question": "Which AWS service is a fully managed platform for building, training, and deploying machine learning models?",
     "answers": [
@@ -4654,3 +4813,14 @@ export const aiPractitionerQuestions2 = [
     "section": "2"
   }
 ];
+const data={
+  saaQuestions1:saaQuestions1,
+  saaQuestions2:saaQuestionsSection2,
+  cloudPractitioner1:cloudPractitionerQuestions1,
+  cloudPractitioner2:cloudPractitionerQuestions2,
+  cloudPractitioner3:cloudPractitionerQuestions3,
+  cloudPractitioner4:cloudPractitionerQuestions4,
+  aiPractitionerQuestions1:aiPractitionerQuestions1,
+  aiPractitionerQuestions2:aiPractitionerQuestions2
+}
+export default  data

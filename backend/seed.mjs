@@ -1,7 +1,7 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { v4 as uuidv4 } from 'uuid'; 
-import { aiPractitionerQuestions2 } from "../data";
+import data from "../data.mjs";
 const client = new DynamoDBClient({
   region: process.env.AWS_REG || "us-east-1",
 });
@@ -12,9 +12,9 @@ const docClient = DynamoDBDocumentClient.from(client);
 async function seedData() {
   console.log("Starting data seeding...");
 
-  for (const question of aiPractitionerQuestions2) {
+  for (const question of data.cloudPractitioner2) {
     const item = {
-      examcode: "AIP",            // Partition Key
+      examcode: "CP-C03",            // Partition Key
       questionid: uuidv4(), // Sort Key (must match schema)
       section_module: question.section,             // Now a regular attribute
       domain: question.domain,

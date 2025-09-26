@@ -1,14 +1,29 @@
 import styles from "./Card.module.css";
 import { useNavigate } from "react-router";
 
-function HomeCard({ children,route }: { children: React.ReactNode,route:string }) {
+function HomeCard({
+  children,
+  route,
+}: {
+  children: React.ReactNode;
+  route: string;
+}) {
   if (!children) {
-    throw new Error('Children cannot be null or undefined');
+    throw new Error("Children cannot be null or undefined");
   }
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
 
-  return <div className={styles.homeCard} onClick={()=>{navigate(route)}}>{children}</div>;
+  return (
+    <div
+      className={styles.homeCard}
+      onClick={() => {
+        navigate(`/Questionares/${route}`);
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export default HomeCard;

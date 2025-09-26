@@ -1,11 +1,13 @@
 import { useAnsweredQuestions } from "../../store/QuestionStore";
 import QuestionReview from "../../combonents/QuestionReview";
 import styles from "./ExamBaseSummaryPage.module.css";
-import { useNavigate } from "react-router";
+import { useNavigate} from "react-router";
 
 
 function ExamSummaryPage() {
     const navigate = useNavigate()
+ 
+    const resetquestions = useAnsweredQuestions((state) => state.resetAnsweredQuestions);
   const answeredquestions = useAnsweredQuestions(
     (state) => state.answeredquestions
   );
@@ -38,7 +40,7 @@ let questionnumber = 1
       <div className={styles.resultBox}>
         <h2 className={styles.title}>Exam Summary</h2>
         <p className={styles.marks}>
-          Final Score: <span>{total.toFixed(2)}%</span>
+          Final Score: <span>{total.toFixed(2)}% {total >= 70 ? "🎉 Congrats" : "😞 Fail"}</span>
         </p>
       </div>
 
@@ -56,7 +58,7 @@ let questionnumber = 1
           );
         })}
       </div>
-      <button onClick={navigateHandler}>Choose another Exam</button>
+      <button onClick={() => {resetquestions();navigateHandler()}} className={styles.navigateHandler}>Choose another Exam</button>
     </div>
   );
 }

@@ -12,33 +12,40 @@ function Login() {
   if (auth.error) {
     return <div>Encountering error... {auth.error.message}</div>;
   }
+  console.log("Auth state:", auth);
+  
 
   if (auth.isAuthenticated) {
     return (
       <div className={styles.loggedIn}>
         <h2>Welcome, {auth.user?.profile.email}</h2>
-        <p>✅ You are signed in with Cognito</p>
+        <p>✅ You are signed in with Practice Solution</p>
 
-        <pre>ID Token: {auth.user?.id_token}</pre>
-        <pre>Access Token: {auth.user?.access_token}</pre>
+        <pre>Email: {auth.user?.profile.email}</pre>
 
-        <button onClick={() => auth.removeUser()}>Sign out</button>
+
+        <button className={styles.signOut} onClick={() => auth.removeUser()}>Sign out</button>
       </div>
     );
   }
+  
+ 
 
   // If not authenticated, show login options
   return (
     <div className={styles.authcontainer}>
-      <div className={styles.form}>
-        <h1>Login / Register</h1>
-        <button onClick={() => auth.signinRedirect()}>Login</button>
-        <button onClick={() => auth.signinRedirect()}>Register</button>
-      </div>
-
-      <div className={styles.imgcontainer}>
+         <div className={styles.imgcontainer}>
         <img src={practiceimg} alt="Practice Solutions" />
       </div>
+      <div className={styles.form}>
+        <h1>Login / Register</h1>
+        <button onClick={() => {
+         console.log("Auth==>",auth);
+        auth.signinRedirect()}}>Login</button>
+      
+      </div>
+
+   
     </div>
   );
 }

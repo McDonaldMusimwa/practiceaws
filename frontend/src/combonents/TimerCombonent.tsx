@@ -3,10 +3,9 @@ import { motion } from "framer-motion";
 import styles from "./Timer.module.css";
 import { CiClock2 } from "react-icons/ci";
 
-
 function DraggableBox() {
-  const [time, setTime] = useState(120 * 60); // 120 minutes in seconds
-  const [minutes, setMinutes] = useState(120);
+  const [time, setTime] = useState(65 * 60); // 120 minutes in seconds
+  const [minutes, setMinutes] = useState(60);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
@@ -23,24 +22,23 @@ function DraggableBox() {
     setSeconds(secs);
   }, [time]);
   return (
-    <div style={{ position: "absolute", width: "100vw", height: "20vh" }}>
-
-    <motion.div
-      drag
-      dragConstraints={{ left: 100, right: -100, top: -100, bottom: 100 }}
-      className={styles.timercontainer}
-    >
- <CiClock2 />
-      <span
-        style={{
-          color: "green",
-          margin: "0 5px",
-        }}
+    <div style={{ position: "absolute", width: "100vw", height: "20vh" ,padding:"1rem"}}>
+      <motion.div
+        drag
+        dragConstraints={{ left: 100, right: 0, top: -10, bottom: 100 }}
+        className={styles.timercontainer}
       >
-        {minutes}
-      </span>{" "}
-      mins - {seconds} sec left
-    </motion.div>
+        <CiClock2 />
+        <span
+          style={{
+            color: "green",
+            margin: "0 5px",
+          }}
+        >
+          {minutes}
+        </span>{" "}
+        mins - {seconds} sec left
+      </motion.div>
     </div>
   );
 }

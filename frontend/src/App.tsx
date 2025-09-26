@@ -1,65 +1,83 @@
-import { useState,useEffect } from "react";
-import  awsExports  from "./aws-exports.ts";
-import { Amplify } from "aws-amplify";
-import {Authenticator} from "./pages/Auth/AuthenticatorCog.tsx";
-//import { useState, useEffect } from "react";
-import ExamBasePage from "./pages/Exam/ExamBasePage.tsx";
-import Home from "./pages/Home.tsx";
-import About from "./pages/About.tsx";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router";
 import Header from "./combonents/Header.tsx";
 import Footer from "./combonents/Footer.tsx";
+import React from "react";
+
+import Home from "./pages/Home.tsx";
+import About from "./pages/About.tsx";
+import Main from "./Main/Main.tsx";
+import ExamSelectionBasePage from "./pages/Exam/ExamSelectionBasePage.tsx";
+import ExamBasePage from "./pages/Exam/ExamBasePage.tsx";
 import ExamSummaryPage from "./pages/Exam/ExamSummaryPage.tsx";
+
 import Login from "./pages/Auth/Login.tsx";
 import SignUp from "./pages/Auth/Register.tsx";
-import Main from "./Main/Main.tsx";
-import { Auth } from "aws-amplify";
 
-//import { Authenticator } from "@aws-amplify/ui-react";
+import { useAuth } from "react-oidc-context";
 
-
-//Amplify.configure({ Auth: awsExports });
-Amplify.configure(awsExports);
 function App() {
+  const auth = useAuth();
 
-
-
-     const [jwtToken, setJwtToken] = useState('');
-
-  useEffect(() => {
-    fetchJwtToken();
-  }, []);
-  
-  const fetchJwtToken = async () => {
-    try {
-      const session = await Auth.currentSession();
-      const token = session.getIdToken().getJwtToken();
-      setJwtToken(token);
-    } catch (error) {
-      console.log('Error fetching JWT token:', error);
+  const ProtectedRoute = ({
+    children,
+    section_module,
+  }: {
+    children: React.JSX.Element;
+    section_module?: string;
+  }) => {
+    // Always allow section 1
+    if (section_module === "1") {
+      return children;
     }
+
+    // Require login for section 2+
+    if (!auth.isAuthenticated) {
+      return <Navigate to="/Login" replace />;
+    }
+
+    return children;
   };
-   return( <Authenticator>
 
- 
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route path="About" element={<About />} />
-          <Route path="/Questionares" element={<Main />} />
-          <Route path="SAA-C03" element={<ExamBasePage />} />
-          <Route path="CP-C03" element={<ExamBasePage />} />
-          <Route path="AIP" element={<ExamBasePage />} />
+  return (
+   <BrowserRouter>
+  <Header />
+  <Routes>
+    <Route index path="/" element={<Home />} />
+    <Route path="About" element={<About />} />
 
-          <Route path="/Exam/Summary" element={<ExamSummaryPage />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="Signup" element={<SignUp />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-           
-    </Authenticator>
+    {/* Questionares routes */}
+    <Route path="Questionares" element={<Main />} />
+
+    {/* Selection page for an exam */}
+    <Route path="Questionares/:examcode" element={<ExamSelectionBasePage />} />
+
+    {/* Exam page per section */}
+    <Route
+      path="Questionares/:examcode/:section_module"
+      element={
+        <ProtectedRoute>
+          <ExamBasePage />
+        </ProtectedRoute>
+      }
+    />
+
+    {/* Summary page */}
+    <Route
+      path="Questionares/:examcode/:section_module/Summary"
+      element={
+        <ProtectedRoute>
+          <ExamSummaryPage />
+        </ProtectedRoute>
+      }
+    />
+
+    {/* Auth */}
+    <Route path="Login" element={<Login />} />
+    <Route path="Signup" element={<SignUp />} />
+  </Routes>
+  <Footer />
+</BrowserRouter>
+
   );
 }
 
